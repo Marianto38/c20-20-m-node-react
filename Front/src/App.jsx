@@ -1,9 +1,7 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 
-import HomeScreen from "./Screens/HomeScreen/HomeScreen"
-import LoginScreen from "./Screens/LoginScreen/LoginScreen"
-import RegisterScreen from "./Screens/RegisterScreen/RegisterScreen"
+import {HomeScreen, RegisterScreen, LoginScreen} from "./index.js"
 
 
 function App() {

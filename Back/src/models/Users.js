@@ -36,8 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    genero: {
-      type: DataTypes.STRING,
+    sexo: {
+      type: DataTypes.ENUM(
+        "MASCULINO",
+        "FEMENINO",
+        "NO ME IDENTIFICO CON NINGUNA DE LAS ANTERIORES"
+      ),
       allowNull: false,
     },
   });

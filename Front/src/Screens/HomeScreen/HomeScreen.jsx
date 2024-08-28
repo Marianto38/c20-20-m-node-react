@@ -5,7 +5,7 @@ const HomeScreen = () => {
     return (
         <>
             <div>HomeScreen hola</div>
-            <NavLink to={'/login'}>Login</NavLink>
+            <NavLink to={'/login'}>Login prueba</NavLink>
             <NavLink to={'/sign-up'}>Sign-up</NavLink>
         </>
     )

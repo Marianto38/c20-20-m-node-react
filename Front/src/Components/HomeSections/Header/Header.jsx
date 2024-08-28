@@ -7,7 +7,7 @@ const Header = () => {
         <header className='home-header'>
             <h2>Donde tu conocimiento es buscado</h2>
             <div className='search'>
-                <input type="text" />
+                <input type="text" placeholder='Busca un conocimiento que desees intercambiar'/>
                 <span className='icon'>🔍</span>
             </div>
             <Selector />
@@ -50,7 +50,7 @@ const Selector = () => {
                     <span>7</span>
                 </li>
             </ul>
-            <span>
+            <span className='arrow'>
                 {'>'}
             </span>
         </div>

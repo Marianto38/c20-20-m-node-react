@@ -8,7 +8,7 @@ const NavHeader = () => {
             <div className='home-nav-container'>
                 <h1 className='title'>SkillTrade</h1>
                 <ul className='right'>
-                    <li></li>
+                    <li className='question'>?</li>
                     <li>Comunidad</li>
                     <li>Iniciar Sesion</li>
                     <li>Registrarse</li>

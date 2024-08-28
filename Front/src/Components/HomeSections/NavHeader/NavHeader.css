@@ -1,0 +1,11 @@
+.home-nav-container{
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-nav-container .rigth{
+    display: flex;
+    align-items: center;
+}

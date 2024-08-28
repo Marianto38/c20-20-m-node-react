@@ -1,11 +1,12 @@
 .home-nav-container{
-    padding: 20px 40px;
+    padding: 25px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.home-nav-container .rigth{
+.home-nav-container .right{
     display: flex;
     align-items: center;
+    gap: 40px;
 }

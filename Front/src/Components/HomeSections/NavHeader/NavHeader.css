@@ -1,0 +1,12 @@
+.home-nav-container{
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-nav-container .right{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}

@@ -56,7 +56,17 @@ const BloqueSuperior = () => {
                 <BloqueInputLabel label={'Apellido'} />
             </div>
             <div className='par'>
-                <BloqueInputLabel label={'Categorias'} />
+                <div className='inputLabel'>
+                    <label >Categoria</label>
+                    <select className='selector' >
+                        <option>Cocina</option>
+                        <option>Desarrollo web</option>
+                        <option>Filosofia</option>
+                        <option>Historia</option>
+                        <option>Matemática</option>
+                        <option>Literatura</option>
+                    </select>
+                </div>
                 <BloqueInputLabel label={'Edad'} />
             </div>
         </>

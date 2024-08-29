@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { BloqueInputLabel, Botonera } from '../index.js';
+
 import './RegisterScreen.css';
 import { NavLink } from 'react-router-dom';
 
@@ -8,13 +10,13 @@ const RegisterScreen = () => {
         e.preventDefault()
 
         const datosUsuario = {
-            nombre:     e.target.elements[0].value,
-            apellido:   e.target.elements[1].value,
+            nombre: e.target.elements[0].value,
+            apellido: e.target.elements[1].value,
             categorias: e.target.elements[2].value,
-            edad:       e.target.elements[3].value,
-            email:      e.target.elements[4].value,
+            edad: e.target.elements[3].value,
+            email: e.target.elements[4].value,
             contraseña: e.target.elements[5].value,
-            repetir:    e.target.elements[6].value
+            repetir: e.target.elements[6].value
         }
 
         console.log(datosUsuario)
@@ -30,15 +32,14 @@ const RegisterScreen = () => {
                 </div>
                 <BloqueInputLabel label={'Email'} />
                 <BloqueInputLabel label={'Contraseña'} type={'password'} />
-                <BloqueInputLabel label={'Repetir contraseña'} type={'password'}/>
-                <div className='botonera'>
-                    <NavLink to={'/'} className='boton'>
-                        Volver
+                <BloqueInputLabel label={'Repetir contraseña'} type={'password'} />
+                <div>
+                    <span>{'¿Ya estás registrado? '}</span>
+                    <NavLink to={'/login'}>
+                        {'Iniciar sesión'}
                     </NavLink>
-                    <button className='boton aceptar' type='submit'>
-                        Aceptar
-                    </button>
                 </div>
+                <Botonera />
             </form>
         </section>
     )
@@ -64,11 +65,4 @@ const BloqueSuperior = () => {
 
 
 
-const BloqueInputLabel = ({ label, type }) => {
-    return (
-        <div className='inputLabel'>
-            <label>{label}</label>
-            <input type={type}/>
-        </div>
-    )
-}
+

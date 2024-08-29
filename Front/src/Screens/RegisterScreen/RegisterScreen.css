@@ -22,27 +22,6 @@
         color: #025131;
         
     }
-
-
-}
-
-.register .inputLabel{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    & input{
-        border:none;
-        background-color: #D9D9D9;
-        border-radius: 2px;
-        height: 40px;
-        padding: 10px;
-        font-size: 20px;
-    }
-
-    & label{
-        font-weight: 500;
-    }
 }
 
 .register .bloqueSuperior{
@@ -57,27 +36,3 @@
     }
 }
 
-.register .botonera{
-    display: flex;
-    justify-content: center;
-    gap: 27px;
-
-    & .boton{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #D9D9D9;
-        color: black;
-        width: 190px;
-        height: 48px;
-        border-radius: 30px;font-size: 20px;
-        border: none;
-        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.664);
-        cursor: pointer;
-    }
-
-    & .aceptar{
-        background-color: #98E3C5;
-    }
-
-}

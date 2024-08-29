@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './RegisterScreen.css';
+import { NavLink } from 'react-router-dom';
 
 const RegisterScreen = () => {
     const handleSubmit = (e) => {
@@ -31,9 +32,9 @@ const RegisterScreen = () => {
                 <BloqueInputLabel label={'Contraseña'} type={'password'} />
                 <BloqueInputLabel label={'Repetir contraseña'} type={'password'}/>
                 <div className='botonera'>
-                    <button className='boton' type='button'>
+                    <NavLink to={'/'} className='boton'>
                         Volver
-                    </button>
+                    </NavLink>
                     <button className='boton aceptar' type='submit'>
                         Aceptar
                     </button>

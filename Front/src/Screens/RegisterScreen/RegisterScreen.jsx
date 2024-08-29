@@ -1,47 +1,73 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+
 import './RegisterScreen.css';
 
 const RegisterScreen = () => {
-    return (
-        <>
-            <section>
-                <form action="">
-                    <h1 className='h1-item'>Registrarse</h1>
-                    <div className='div-1'>
-                        <div className='container-form-divs name'>
-                            <label htmlFor="name">Nombre</label>
-                            <input type="text" id='name' name='name' /></div>
-                        <div className='container-form-divs surname'>
-                            <label htmlFor="surname">Apellido</label>
-                            <input type="text" id='surname' name='surname' /></div>
-                    </div>
-                    <div className='div-2'>
-                        <div className='container-form-divs categorys'>
-                            <label htmlFor="categorys">Categorias</label>
-                            <input type="text" id='categorys' name='categorys' /></div>
-                        <div className='container-form-divs age'>
-                            <label htmlFor="age">Edad</label>
-                            <input type="text" id='age' name='age' /></div>
-                    </div>
-                    <div className='container-form-divs email'>
-                        <label htmlFor="email">Email</label>
-                        <input type="text" id='email' name='email' /></div>
-                    <div className='container-form-divs password'>
-                        <label htmlFor="password">Contraseña</label>
-                        <input type="text" id='password' name='password' /></div>
-                    <div className='container-form-divs r-p'>
-                        <label htmlFor="repeat-password">Repetir contraseña</label>
-                        <input type="text" id='repeat-password' name='repeat-password' /></div>
-                    <div className='container-form-buttons'>
-                        <NavLink to={'/'}>volver</NavLink>
-                        <button>Aceptar</button>
-                    </div>
-                </form>
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
-            </section>
-        </>
+        const datosUsuario = {
+            nombre:     e.target.elements[0].value,
+            apellido:   e.target.elements[1].value,
+            categorias: e.target.elements[2].value,
+            edad:       e.target.elements[3].value,
+            email:      e.target.elements[4].value,
+            contraseña: e.target.elements[5].value,
+            repetir:    e.target.elements[6].value
+        }
+
+        console.log(datosUsuario)
+
+    }
+
+    return (
+        <section className='register'>
+            <form onSubmit={handleSubmit}>
+                <h2>Registrate</h2>
+                <div className='bloqueSuperior'>
+                    <BloqueSuperior />
+                </div>
+                <BloqueInputLabel label={'Email'} />
+                <BloqueInputLabel label={'Contraseña'} type={'password'} />
+                <BloqueInputLabel label={'Repetir contraseña'} type={'password'}/>
+                <div className='botonera'>
+                    <button className='boton' type='button'>
+                        Volver
+                    </button>
+                    <button className='boton aceptar' type='submit'>
+                        Aceptar
+                    </button>
+                </div>
+            </form>
+        </section>
     )
 }
 
 export default RegisterScreen
+
+
+const BloqueSuperior = () => {
+    return (
+        <>
+            <div className='par'>
+                <BloqueInputLabel label={'Nombre'} />
+                <BloqueInputLabel label={'Apellido'} />
+            </div>
+            <div className='par'>
+                <BloqueInputLabel label={'Categorias'} />
+                <BloqueInputLabel label={'Edad'} />
+            </div>
+        </>
+    )
+}
+
+
+
+const BloqueInputLabel = ({ label, type }) => {
+    return (
+        <div className='inputLabel'>
+            <label>{label}</label>
+            <input type={type}/>
+        </div>
+    )
+}

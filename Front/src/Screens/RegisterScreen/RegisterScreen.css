@@ -1,45 +1,78 @@
-section {
+.register{
+    width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    background-color: red;
+    background-color: #D9D9D9;
+}
 
-    > form {
-        --size: 500px;
-        background-color: green;
-        padding: 0 70px 0;
-        height: 600px;
-        width: var(--size);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
+.register form{
+    padding: 50px 90px 50px 80px;
+    width: 550px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
 
-        > .div-1, .div-2 {
-            background-color: yellow;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            
-            > .container-form-divs {
-                display: flex;
-                flex-direction: column;
-            }
-        }
+    & h2{
+        font-size: 50px;
+        text-align: center;
+        color: #025131;
         
-        > .container-form-divs {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        > .container-form-buttons {
-            width: 100%;
-            background: orange;
-            display: flex;
-            justify-content: space-around;
-        }
     }
+
+
+}
+
+.register .inputLabel{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & input{
+        border:none;
+        background-color: #D9D9D9;
+        border-radius: 2px;
+        height: 40px;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    & label{
+        font-weight: 500;
+    }
+}
+
+.register .bloqueSuperior{
+    display: flex;
+    justify-content: space-between;
+
+    & .par{
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        width: 45%;
+    }
+}
+
+.register .botonera{
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+
+    & .boton{
+        width: 190px;
+        height: 48px;
+        border-radius: 30px;font-size: 20px;
+        border: none;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.664);
+        cursor: pointer;
+    }
+
+    & .aceptar{
+        background-color: #98E3C5;
+    }
+
 }

@@ -32,9 +32,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    profession: {
-      type: DataTypes.STRING,
+    professionId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Professions',
+        key: 'id'
+      }
     },
     sexo: {
       type: DataTypes.ENUM(

@@ -1,4 +1,5 @@
-const { Users } = require("../db");
+const { Users, Professions } = require("../db");
+
 module.exports = async (req, res) => {
   try {
     let {
@@ -8,12 +9,18 @@ module.exports = async (req, res) => {
       description,
       email,
       tel,
-      profession,
+      profession, //proveniente del front
       sexo,
     } = req.body;
 
+    let existingProfession = await Professions.findOne({ where: { name: profession } });
+
+    if (!existingProfession) {
+      existingProfession = await Professions.create({ name: profession });
+    }
+
     const existingUser = await Users.findOne({
-      where: { name, last_name, profession },
+      where: { name, last_name, email, professionId: existingProfession.id },
     });
 
     if (existingUser) {
@@ -26,7 +33,7 @@ module.exports = async (req, res) => {
         description,
         email,
         tel,
-        profession,
+        professionId: existingProfession.id,
         sexo,
       });
       return res.status(200).json(newUser);

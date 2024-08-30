@@ -1,5 +1,7 @@
 const { Users } = require('../db')
 const bcrypt = require ('bcrypt')
+const jwt = require ('jsonwebtoken')
+const SECRET_KEY = process.env.JWT_SECRET_KEY
 
 const loginUser = async (req, res) =>{
     try{
@@ -14,8 +16,15 @@ const loginUser = async (req, res) =>{
         const isValid = bcrypt.compareSync(password, existingUser.password);
 
         if (isValid){
-            //implementar JWT
-            return res.status(200).json({message: 'login realizado', user: existingUser});
+            const token = jwt.sign({ id: existingUser.id, email: existingUser.email}, SECRET_KEY, {expiresIn: '1h'})
+
+            res.cookie('token', token, {
+                httpOnly: true,  //solo accesible a través de HTTP
+                secure: process.env.NODE_ENV === 'production', // solo se envía a través de HTTPS en producción
+                sameSite: 'Strict',  //protección contra CSRF
+                maxAge: 3600000,
+              });
+            return res.status(200).json({message: 'login realizado'});
         }
         else{
             return res.status(401).json({error: 'Contraseña incorrecta'});

@@ -44,9 +44,14 @@ module.exports = (sequelize, DataTypes) => {
     Instagram: {
       type: DataTypes.STRING,
     },
-    Profession: {
-      type: DataTypes.STRING,
+
+    professionId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "Professions",
+        key: "id",
+      },
     },
     sexo: {
       type: DataTypes.ENUM(

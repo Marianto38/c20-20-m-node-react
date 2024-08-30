@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './NavHeader.css'
+import { NavLink } from 'react-router-dom'
 
 const NavHeader = () => {
     return (
@@ -10,8 +11,12 @@ const NavHeader = () => {
                 <ul className='right'>
                     <li className='question'>?</li>
                     <li>Comunidad</li>
-                    <li>Iniciar Sesion</li>
-                    <li>Registrarse</li>
+                    <NavLink to={'/login'}>
+                        Iniciar sesion
+                    </NavLink>
+                    <NavLink to={'/sign-up'}>
+                        Registrarse
+                    </NavLink>
                 </ul>
             </div>
         </nav>

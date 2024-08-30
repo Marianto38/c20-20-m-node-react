@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     } = req.body;
 
     const existingUser = await Users.findOne({
-      where: { name, last_name, profession },
+      where: { email },
     });
 
     if (existingUser) {

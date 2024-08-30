@@ -16,11 +16,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    birthdate: {
+      // fecha de nacimiento
       type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -32,13 +41,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    Instagram: {
+      type: DataTypes.STRING,
+    },
+
     professionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Professions',
-        key: 'id'
-      }
+        model: "Professions",
+        key: "id",
+      },
     },
     sexo: {
       type: DataTypes.ENUM(

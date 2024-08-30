@@ -13,14 +13,16 @@ module.exports = async (req, res) => {
       sexo,
     } = req.body;
 
-    let existingProfession = await Professions.findOne({ where: { name: profession } });
+    let existingProfession = await Professions.findOne({
+      where: { name: profession },
+    });
 
     if (!existingProfession) {
       existingProfession = await Professions.create({ name: profession });
     }
 
     const existingUser = await Users.findOne({
-      where: { name, last_name, email, professionId: existingProfession.id },
+      where: { email, professionId: existingProfession.id },
     });
 
     if (existingUser) {

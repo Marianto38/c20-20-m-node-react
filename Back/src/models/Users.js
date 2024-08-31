@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    /* image: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       // fecha de nacimiento
       type: DataTypes.STRING,
       allowNull: false,
-    }, */
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -41,10 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    /* Instagram: {
+    Instagram: {
       type: DataTypes.STRING,
-      allowNull: true
-    }, */
+      allowNull: true,
+    },
 
     professionId: {
       type: DataTypes.INTEGER,

@@ -1,4 +1,5 @@
 const { Users, Professions } = require("../db");
+const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
   try {
@@ -31,13 +32,15 @@ module.exports = async (req, res) => {
     if (existingUser) {
       throw new Error("El usuario ya existe.");
     } else {
+      const hashedPassword = bcrypt.hashSync(password, 10);
+
       const newUser = await Users.create({
         name,
         last_name,
         image,
         birthdate,
+        password: hashedPassword,
         description,
-        password,
         email,
         tel,
         Instagram,

@@ -5,20 +5,23 @@ module.exports = async (req, res) => {
     let {
       name,
       last_name,
-      password,
+      image,
+      birthdate,
       description,
+      password,
       email,
       tel,
-      profession, //proveniente del front
+      Instagram,
+      professionId,
       sexo,
     } = req.body;
 
     let existingProfession = await Professions.findOne({
-      where: { name: profession },
+      where: { name: professionId },
     });
 
     if (!existingProfession) {
-      existingProfession = await Professions.create({ name: profession });
+      existingProfession = await Professions.create({ name: professionId });
     }
 
     const existingUser = await Users.findOne({
@@ -31,14 +34,19 @@ module.exports = async (req, res) => {
       const newUser = await Users.create({
         name,
         last_name,
-        password,
+        image,
+        birthdate,
         description,
+        password,
         email,
         tel,
+        Instagram,
         professionId: existingProfession.id,
         sexo,
       });
-      return res.status(200).json(newUser);
+      return res
+        .status(200)
+        .json({ message: "Usuario cargado con exito", newUser });
     }
   } catch (error) {
     console.error(error);

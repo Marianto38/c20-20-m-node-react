@@ -1,7 +1,7 @@
 const server = require("./src/server.js");
 const { database, loadProfessions } = require("./src/db.js");
 
-database.sync({ force: false }).then(async() => {
+database.sync({ force: true }).then(async () => {
   console.log("Database synchronized");
 
   await loadProfessions();
@@ -9,6 +9,4 @@ database.sync({ force: false }).then(async() => {
   server.listen("3001", () => {
     console.log("listening on port", 3001);
   });
-
-  
 });

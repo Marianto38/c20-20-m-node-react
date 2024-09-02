@@ -1,27 +1,28 @@
 const { Users, Professions } = require("../db");
-const bcrypt = require ('bcrypt')
+const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
   try {
     let {
       name,
       last_name,
-      password,
-      description,
-      email,
-      tel,
       image,
       birthdate,
-      profession, //proveniente del front
+      description,
+      password,
+      email,
+      tel,
+      Instagram,
+      professionId,
       sexo,
     } = req.body;
 
     let existingProfession = await Professions.findOne({
-      where: { name: profession },
+      where: { name: professionId },
     });
 
     if (!existingProfession) {
-      existingProfession = await Professions.create({ name: profession });
+      existingProfession = await Professions.create({ name: professionId });
     }
 
     const existingUser = await Users.findOne({
@@ -31,22 +32,24 @@ module.exports = async (req, res) => {
     if (existingUser) {
       throw new Error("El usuario ya existe.");
     } else {
-
-      const hashedPassword = bcrypt.hashSync(password, 10)
+      const hashedPassword = bcrypt.hashSync(password, 10);
 
       const newUser = await Users.create({
         name,
         last_name,
+        image,
+        birthdate,
         password: hashedPassword,
         description,
         email,
         tel,
-        image,
-        birthdate,
+        Instagram,
         professionId: existingProfession.id,
         sexo,
       });
-      return res.status(200).json(newUser);
+      return res
+        .status(200)
+        .json({ message: "Usuario cargado con exito", newUser });
     }
   } catch (error) {
     console.error(error);

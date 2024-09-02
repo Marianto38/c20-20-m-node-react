@@ -1,4 +1,4 @@
-const { Users, Reviews } = require("../db");
+const { Users, Reviews, Professions } = require("../db");
 
 module.exports = async (req, res) => {
   const { name } = req.query;
@@ -6,7 +6,17 @@ module.exports = async (req, res) => {
     let user;
     if (!name) {
       user = await Users.findAll({
-        include: [{ model: Reviews }],
+        attributes: { exclude: ["professionId", "createdAt", "updatedAt"] },
+        include: [
+          {
+            model: Reviews,
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+          },
+          {
+            model: Professions,
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+          },
+        ],
       });
     }
     res.status(200).json(user);

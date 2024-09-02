@@ -1,16 +1,16 @@
-import React from 'react'
-
-import {NavHeader,Header} from '../index.js'
-import MainUserCards from '../../Components/HomeSections/mainUserCards/MainUserCards.jsx'
+import React from "react";
+import { NavHeader, Header, MainUserCards } from "../index.js";
 
 const HomeScreen = () => {
-    return (
-        <>
-            <NavHeader />
-            <Header />
-            <MainUserCards />
-        </>
-    )
-}
+  return (
+    <>
+      <NavHeader />
+      <main>
+        <Header />
+        <MainUserCards />
+      </main>
+    </>
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

@@ -1,0 +1,45 @@
+.register{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9D9D9;
+}
+
+.register form{
+    padding: 50px 90px 50px 80px;
+    width: 550px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+
+    & h2{
+        font-size: 50px;
+        text-align: center;
+        color: #025131;
+        
+    }
+}
+
+.register .bloqueSuperior{
+    display: flex;
+    justify-content: space-between;
+
+    & .par{
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        width: 45%;
+    }
+}
+
+.register .selector{
+    background-color: #D9D9D9;
+    border-radius: 2px;
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+}

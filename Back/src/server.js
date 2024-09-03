@@ -15,7 +15,7 @@ server.use(cookieParser());
 
 //CORS con opciones específicas
 server.use(cors({
-  origin: 'http://localhost:3000', //cambiaremos esto al dominio del cliente al deployar
+  origin: 'http://localhost:5173', //cambiaremos esto al dominio del cliente al deployar
   credentials: true //esto habilita el envío de cookies en solicitudes CORS
 }));
 

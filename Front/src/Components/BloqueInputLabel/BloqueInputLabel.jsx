@@ -1,14 +1,19 @@
-import React from "react"
+import React from "react";
+import { Field } from 'formik';
+import './BloqueInputLabel.css';
 
-import './BloqueInputLabel.css'
-
-const BloqueInputLabel = ({ label, type, fontSize }) => {
+const BloqueInputLabel = ({ label, type = 'text', name, fontSize }) => {
     return (
         <div className='inputLabel'>
-            <label  style={{ fontSize: fontSize }}>{label}</label>
-            <input type={type}/>
+            <label htmlFor={name} style={{ fontSize }}>{label}</label>
+            <Field
+                type={type}
+                name={name}
+                id={name}
+                className='inputField'
+            />
         </div>
-    )
+    );
 }
 
-export default BloqueInputLabel
+export default BloqueInputLabel;

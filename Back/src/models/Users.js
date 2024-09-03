@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     birthdate: {
       // fecha de nacimiento
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
@@ -39,11 +39,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     tel: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     Instagram: {
       type: DataTypes.STRING,
-      allowNull: true,
+      // allowNull: true,
     },
 
     professionId: {
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         "FEMENINO",
         "NO ME IDENTIFICO CON NINGUNA DE LAS ANTERIORES"
       ),
-      allowNull: false,
+      // allowNull: false,
     },
   });
   return Users;

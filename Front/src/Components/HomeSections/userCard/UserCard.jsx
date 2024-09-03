@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./userCard.css";
 import { GoHeart } from "react-icons/go";
 import { PiHeartDuotone } from "react-icons/pi";
@@ -19,6 +19,7 @@ const UserCard = ({ user }) => {
   const handleToProfile = () => {
     setIsModalOpen(true);
   };
+
   return (
     <>
       <div className="userCard-container" onClick={() => handleToProfile()}>
@@ -34,12 +35,12 @@ const UserCard = ({ user }) => {
           ></figure>
           <article className="userCard-info">
             <p className="userCard-name">{user?.name}</p>
-            <p className="userCard-category">{user?.profesion}</p>
+            <p className="userCard-category">{user?.Profession?.name}</p>
           </article>
         </div>
         <article className="userCard-details">
           <p className="userCard-rating">
-            {user?.reviews} <span>opiniones</span>
+            {user?.reviews || "Sin"} <span>opiniones</span>
           </p>
           <p className="userCard-description">
             {truncate(user?.description, 65)}

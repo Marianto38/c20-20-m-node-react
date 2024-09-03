@@ -24,12 +24,12 @@ const UserModalProfile = ({ user }) => {
           </p>
           <p className="userModalProfile-email">{user?.email}</p>
           <p className="userModalProfile-category">
-            {user?.profesion.toUpperCase()}
+            {user?.Profession?.name?.toUpperCase()}
           </p>
           <p className="userModalProfile-description">{user?.description}</p>
           <p className="userModalProfile-contact">Contáctame</p>
           <div className="userModalProfile-socialMedia">
-            {user?.contact?.whatsapp && (
+            {user?.whatsapp && (
               <Link
                 to={`https://wa.me/${
                   user.contact.whatsapp
@@ -42,16 +42,16 @@ const UserModalProfile = ({ user }) => {
             )}
             {user?.contact?.facebook && (
               <Link
-                to={user.contact.facebook}
+                to={user?.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaFacebook className="icon" />
               </Link>
             )}
-            {user?.contact?.instagram && (
+            {user?.contact?.Instagram && (
               <Link
-                to={user.contact.instagram}
+                to={user?.Instagram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -61,7 +61,7 @@ const UserModalProfile = ({ user }) => {
           </div>
         </article>
         <p className="userModalProfile-rating">
-          {user?.reviews} <span>Opiniones</span>
+          {user?.reviews || 'Sin'} <span>Opiniones</span>
         </p>
       </div>
     </>

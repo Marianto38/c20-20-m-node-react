@@ -1,78 +1,214 @@
-import React from 'react'
-
-import { BloqueInputLabel, Botonera } from '../index.js';
-
-import './RegisterScreen.css';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { NavLink, useNavigate } from "react-router-dom";
+import { createUser, getProfessions } from "../../services/services.js";
+import { BloqueInputLabel, Botonera } from "../index.js";
+import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
-    const handleSubmit = (e) => {
-        e.preventDefault()
+  const [professions, setProfessions] = useState([]);
+  const navigate = useNavigate();
 
-        const datosUsuario = {
-            nombre: e.target.elements[0].value,
-            apellido: e.target.elements[1].value,
-            categorias: e.target.elements[2].value,
-            edad: e.target.elements[3].value,
-            email: e.target.elements[4].value,
-            contraseña: e.target.elements[5].value,
-            repetir: e.target.elements[6].value
-        }
-
-        console.log(datosUsuario)
-
+  const handleGetProfessions = async () => {
+    try {
+      const response = await getProfessions();
+      if (response.status === 200) {
+        setProfessions(response.data);
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching professions:", error);
     }
+  };
 
-    return (
-        <section className='register'>
-            <form onSubmit={handleSubmit}>
-                <h2>Registrate</h2>
-                <div className='bloqueSuperior'>
-                    <BloqueSuperior />
-                </div>
-                <BloqueInputLabel label={'Email'} />
-                <BloqueInputLabel label={'Contraseña'} type={'password'} />
-                <BloqueInputLabel label={'Repetir contraseña'} type={'password'} />
-                <div>
-                    <span>{'¿Ya estás registrado? '}</span>
-                    <NavLink to={'/login'}>
-                        {'Iniciar sesión'}
-                    </NavLink>
-                </div>
-                <Botonera />
-            </form>
-        </section>
-    )
-}
+  useEffect(() => {
+    handleGetProfessions();
+  }, []);
 
-export default RegisterScreen
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("El nombre es obligatorio"),
+    last_name: Yup.string().required("El apellido es obligatorio"),
+    email: Yup.string()
+      .email("Email inválido")
+      .required("El email es obligatorio"),
+    password: Yup.string()
+      .min(8, "La contraseña debe tener al menos 8 caracteres")
+      .max(15, "La contraseña no puede tener más de 15 caracteres")
+      .matches(
+        /[A-Z]/,
+        "La contraseña debe contener al menos una letra mayúscula"
+      )
+      .matches(
+        /[a-z]/,
+        "La contraseña debe contener al menos una letra minúscula"
+      )
+      .matches(/[0-9]/, "La contraseña debe contener al menos un número")
+      .matches(/[\W_]/, "La contraseña debe contener al menos un símbolo")
+      .required("La contraseña es obligatoria"),
+    repetir: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Las contraseñas deben coincidir")
+      .required("Debe confirmar su contraseña"),
+    professionId: Yup.string().required("Seleccione una categoría"),
+    sexo: Yup.string().required("Seleccione un género"),
+  });
 
+  const handleSubmit = async (values) => {
+    console.log(values.professionId)
+    const userData = {
+      name: values.name,
+      last_name: values.last_name,
+      image: "",
+      birthdate: "",
+      description: `Soy ${values.professionId}`,
+      password: values.password,
+      email: values.email,
+      tel: "",
+      Instagram: `@${values.name}`,
+      professionId: values.professionId,
+      sexo: values.sexo,
+    };
 
-const BloqueSuperior = () => {
-    return (
-        <>
-            <div className='par'>
-                <BloqueInputLabel label={'Nombre'} />
-                <BloqueInputLabel label={'Apellido'} />
+    try {
+      const response = await createUser(userData);
+      if (response.status === 200) {
+        Promise.resolve().then(() => {
+          navigate("/");
+        });
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error en el registro:", error);
+    }
+  };
+
+  const initialValues = {
+    name: "",
+    last_name: "",
+    image: "",
+    birthdate: "",
+    description: "",
+    password: "",
+    email: "",
+    tel: "",
+    Instagram: "",
+    professionId: "",
+    sexo: "",
+    repetir: "",
+  };
+
+  return (
+    <section className="register">
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ handleChange }) => (
+          <Form>
+            <h2>Registrate</h2>
+            <div className="bloqueSuperior">
+              <BloqueSuperior
+                professions={professions}
+                handleChange={handleChange}
+              />
             </div>
-            <div className='par'>
-                <div className='inputLabel'>
-                    <label >Categoria</label>
-                    <select className='selector' >
-                        <option>Cocina</option>
-                        <option>Desarrollo web</option>
-                        <option>Filosofia</option>
-                        <option>Historia</option>
-                        <option>Matemática</option>
-                        <option>Literatura</option>
-                    </select>
-                </div>
-                <BloqueInputLabel label={'Edad'} />
+            <div>
+              <BloqueInputLabel
+                label={"Email"}
+                name="email"
+                component={Field}
+              />
+              <ErrorMessage name="email" component="div" className="error" />
             </div>
-        </>
-    )
-}
+            <div>
+              <BloqueInputLabel
+                label={"Contraseña"}
+                name="password"
+                type="password"
+                component={Field}
+              />
+              <ErrorMessage name="password" component="div" className="error" />
+            </div>
+            <div>
+              <BloqueInputLabel
+                label={"Repetir contraseña"}
+                name="repetir"
+                type="password"
+                component={({ field, form }) => (
+                  <input
+                    {...field}
+                    type="password"
+                    onChange={(e) => {
+                      form.setFieldValue("repetir", e.target.value);
+                    }}
+                    value={field.value}
+                  />
+                )}
+              />
+              <ErrorMessage name="repetir" component="div" className="error" />
+            </div>
 
+            <div>
+              <span>{"¿Ya estás registrado? "}</span>
+              <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
+            </div>
+            <Botonera />
+          </Form>
+        )}
+      </Formik>
+    </section>
+  );
+};
 
+export default RegisterScreen;
 
-
+const BloqueSuperior = ({ professions, handleChange }) => (
+  <>
+    <div className="par">
+      <BloqueInputLabel label={"Nombre"} name="name" component={Field} />
+      <ErrorMessage name="name" component="div" className="error" />
+      <BloqueInputLabel label={"Apellido"} name="last_name" component={Field} />
+      <ErrorMessage name="last_name" component="div" className="error" />
+    </div>
+    <div className="par">
+      <div className="inputLabel">
+        <label>Categoria</label>
+        <Field
+          as="select"
+          name="professionId"
+          className="selector"
+          id="professionId"
+          onChange={handleChange}
+        >
+          <option value="" label="Seleccione una categoría" />
+          {professions?.map((profession, index) => (
+            <option key={index} value={profession.name}>
+              {profession.name}
+            </option>
+          ))}
+        </Field>
+        <ErrorMessage name="professionId" component="div" className="error" />
+      </div>
+      <div className="inputLabel">
+        <label>Sexo</label>
+        <Field
+          as="select"
+          name="sexo"
+          className="selector"
+          onChange={handleChange}
+        >
+          <option value="" label="Seleccione su género" />
+          <option value="MASCULINO">Masculino</option>
+          <option value="FEMENINO">Femenino</option>
+          <option value="NO ME IDENTIFICO CON NINGUNA DE LAS ANTERIORES">
+            No me identifico con ninguna de las anteriores
+          </option>
+        </Field>
+        <ErrorMessage name="sexo" component="div" className="error" />
+      </div>
+    </div>
+  </>
+);

@@ -2,7 +2,9 @@ const { Professions } = require("../db");
 
 const getProfessions = async (req, res) => {
   try {
-    const professions = await Professions.findAll();
+    const professions = await Professions.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
 
     return res.status(200).json(professions);
   } catch (error) {

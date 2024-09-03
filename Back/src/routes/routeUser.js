@@ -11,7 +11,7 @@ const loginUser = require("../controllers/loginUser");
 const registerMid = require("../middleware/registerMid");
 
 router.get("/", getAllUser);
+router.get("/profession", getUSerByProfession);
 router.post("/", registerMid, postUser);
 router.post("/login", loginUser);
-router.get("/profession", getUSerByProfession);
 module.exports = router;

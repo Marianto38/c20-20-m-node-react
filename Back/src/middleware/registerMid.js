@@ -56,13 +56,13 @@ function registerMid(req, res, next) {
     // Validar cada campo
     isEmpty(name, "name");
     isEmpty(last_name, "last_name");
-    isEmpty(image, "image");
-    isEmpty(birthdate, "birthdate");
-    isEmpty(description, "description");
+    // isEmpty(image, "image");
+    // isEmpty(birthdate, "birthdate");
+    // isEmpty(description, "description");
     isEmpty(password, "password");
     isEmpty(email, "email");
-    isEmpty(tel, "tel");
-    isEmpty(Instagram, "Instagram");
+    // isEmpty(tel, "tel");
+    // isEmpty(Instagram, "Instagram");
     isEmpty(professionId, "professionId");
     isEmpty(sexo, "sexo");
 

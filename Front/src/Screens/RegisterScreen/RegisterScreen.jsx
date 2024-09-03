@@ -55,7 +55,7 @@ const RegisterScreen = () => {
   });
 
   const handleSubmit = async (values) => {
-    console.log(values.professionId)
+
     const userData = {
       name: values.name,
       last_name: values.last_name,

@@ -6,15 +6,15 @@ module.exports = async (req, res) => {
     let {
       name,
       last_name,
-      image,
+      // image,
       birthdate,
-      description,
+      // description,
       password,
       email,
-      tel,
-      Instagram,
+      // tel,
+      // Instagram,
       professionId,
-      sexo,
+      // sexo,
     } = req.body;
 
     let existingProfession = await Professions.findOne({
@@ -37,15 +37,15 @@ module.exports = async (req, res) => {
       const newUser = await Users.create({
         name,
         last_name,
-        image,
+        // image,
         birthdate,
         password: hashedPassword,
-        description,
+        // description,
         email,
-        tel,
-        Instagram,
+        // tel,
+        // Instagram,
         professionId: existingProfession.id,
-        sexo,
+        // sexo,
       });
       return res
         .status(200)

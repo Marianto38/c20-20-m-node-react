@@ -15,8 +15,12 @@ const loginUser = async (req, res) =>{
 
         const isValid = bcrypt.compareSync(password, existingUser.password);
 
-        if (isValid){
-            const token = jwt.sign({ id: existingUser.id, email: existingUser.email}, SECRET_KEY, {expiresIn: '1h'})
+        if (isValid) {
+      const token = jwt.sign(
+        { id: existingUser.id, email: existingUser.email },
+        SECRET_KEY,
+        { expiresIn: '1h' }
+      );
 
             res.cookie('token', token, {
                 httpOnly: true,  //solo accesible a través de HTTP
@@ -24,6 +28,7 @@ const loginUser = async (req, res) =>{
                 sameSite: 'Strict',  //protección contra CSRF
                 maxAge: 3600000,
               });
+              
             return res.status(200).json({message: 'login realizado'});
         }
         else{

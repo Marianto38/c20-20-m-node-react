@@ -37,14 +37,14 @@ function registerMid(req, res, next) {
     }
 
     // Validar que contenga al menos una letra mayúscula, un número y un carácter especial
-    const passwordRegex =
+    /* const passwordRegex =
       /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
 
     if (!passwordRegex.test(password)) {
       throw new Error(
         "La contraseña debe contener al menos una letra mayúscula, un número y un carácter especial."
       );
-    }
+    } */
 
     //todo  validaciones de todos los campos
     function isEmpty(field, fieldName) {

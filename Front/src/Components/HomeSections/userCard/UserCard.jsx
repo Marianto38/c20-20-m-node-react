@@ -3,7 +3,7 @@ import "./userCard.css";
 import { GoHeart } from "react-icons/go";
 import { PiHeartDuotone } from "react-icons/pi";
 import { truncate } from "../../../utils/utils";
-import ModalComponent from "../../modalComponent/ModalComponent";
+import ModalComponent from "../../ModalComponent/ModalComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserModalProfile from "../UserModalProfile/UserModalProfile";
 

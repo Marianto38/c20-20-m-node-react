@@ -8,7 +8,7 @@ const { Server } = require('socket.io'); // socket.io
 const app = express();
 const routeUser = require("./routes/routeUser");
 const routeReview = require("./routes/routeReview");
-const routeProfessions = require('./routes/routeProfessions');
+const routeProfessions = require("./routes/routeProfessions");
 
 // Middlewares
 app.use(morgan("dev"));

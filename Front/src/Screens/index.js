@@ -2,6 +2,7 @@ import NavHeader from "../Components/HomeSections/NavHeader/NavHeader";
 import Header from "../Components/HomeSections/Header/Header";
 import BloqueInputLabel from "../Components/BloqueInputLabel/BloqueInputLabel";
 import Botonera from "../Components/Botonera/Botonera";
-import MainUserCards from "../Components/HomeSections/mainUserCards/MainUserCards"
+import MainUserCards from "../Components/HomeSections/mainUserCards/MainUserCards";
+import Reviews from "../Components/HomeSections/Reviews/Reviews";
 
-export {NavHeader,Header, BloqueInputLabel, Botonera, MainUserCards}
+export {NavHeader,Header, BloqueInputLabel, Botonera, MainUserCards, Reviews}

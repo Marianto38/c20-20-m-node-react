@@ -40,8 +40,10 @@ const UserCard = ({ user }) => {
         </div>
         <article className="userCard-details">
           <p className="userCard-rating">
-            {user?.reviews || "Sin"} <span>opiniones</span>
+            {user?.Reviews?.length > 0 ? user.Reviews.length : "Sin"}{" "}
+            <span>opiniones</span>
           </p>
+
           <p className="userCard-description">
             {truncate(user?.description, 65)}
           </p>

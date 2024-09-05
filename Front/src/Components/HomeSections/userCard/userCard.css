@@ -81,3 +81,7 @@
   color: red;
   cursor: pointer;
 }
+
+.userCard-rating {
+  font-weight: bold;
+}

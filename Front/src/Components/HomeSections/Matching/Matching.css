@@ -1,0 +1,132 @@
+.matching {
+  height: 100vh;
+}
+.matchingCard-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  cursor: pointer;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  height: 80vh;
+  h3 {
+    font-size: 2.5rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+.matchingCard-containerImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 250px;
+  border-radius: 2rem;
+  background-color: transparent;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+/* Aplica un estilo a la última tarjeta visible */
+.matchingCard-containerImage:last-child {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1); /* La última tarjeta en escala normal */
+}
+
+/* Las tarjetas anteriores estarán apiladas pero menos visibles */
+.matchingCard-containerImage:not(:last-child) {
+  z-index: 0;
+  opacity: 1;
+  transform: scale(0.9); /* Aplica una escala menor a las anteriores */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.matchingCard-left,
+.matchingCard-right .matchingCard-middle {
+  position: relative;
+  width: 350px;
+  height: 400px;
+  margin: 0;
+}
+
+.matchingCard-left {
+  position: absolute;
+  left: 15%;
+  bottom: 0%;
+  transform: translate(-50%, -50%);
+  transform: rotate(-25deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.matchingCard-right {
+  position: absolute;
+  left: 70%;
+  bottom: 10%;
+  transform: translate(-50%, -50%);
+  transform: rotate(25deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.matchingCard-middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.matchingCard-info {
+  position: absolute;
+  bottom: 5%;
+  color: white;
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+.matchingCard-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.matchingCard-category {
+  font-size: 1.5rem;
+}
+
+.matchingCard-buttons {
+  z-index: 99999;
+
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+}
+.close {
+  color: red;
+}
+.check {
+  color: green;
+}
+.matchingCard-buttonsMatching {
+  display: flex;
+  justify-content: center;
+}
+
+/* Animación para hover en las imágenes */
+.matchingCard-container figure img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.matchingCard-container figure img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,5 +1,6 @@
 import React from "react";
-import { NavHeader, Header, MainUserCards, Footer } from "../index.js";
+
+import { NavHeader, Header, MainUserCards, Matching, Footer } from "../index.js";
 
 const HomeScreen = () => {
   return (
@@ -8,6 +9,7 @@ const HomeScreen = () => {
       <main>
         <Header />
         <MainUserCards />
+        <Matching/>
       </main>
       <Footer />
     </>

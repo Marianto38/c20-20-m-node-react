@@ -1,0 +1,84 @@
+footer {
+    padding: 20px;
+    background-color: #444444; 
+}
+
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-right {
+    margin-left: auto;
+}
+
+.footer-left, .footer-center {
+    flex: 1;
+    margin: 0 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-left, .footer-center, .footer-right {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffff;
+}
+
+.footer-link {
+    color: #ffff;
+    margin-bottom: 20px;
+    display: block;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: left;
+    padding-top: 20px;
+}
+
+.footer-line {
+    margin: 0; 
+    border: none; 
+    height: 3px; 
+    background-color: grey; 
+}
+
+.footer-text {
+    margin: 10px 0 0;
+    color: #ffff;
+    font-size: 1rem;
+}
+
+/* Estilo para los iconos de redes sociales */
+.social-media-icon {
+    width: 24px; /* Tamaño del icono */
+    height: 24px; /* Tamaño del icono */
+    fill: #ffff; /* Color de los iconos */
+    transition: fill 0.3s; /* Transición de color al pasar el ratón */
+}
+
+.social-media-link:hover .social-media-icon {
+    fill: #007bff; /* Color de los iconos al pasar el ratón */
+}

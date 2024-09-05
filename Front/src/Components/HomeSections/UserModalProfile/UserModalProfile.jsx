@@ -29,10 +29,10 @@ const UserModalProfile = ({ user }) => {
           <p className="userModalProfile-description">{user?.description}</p>
           <p className="userModalProfile-contact">Contáctame</p>
           <div className="userModalProfile-socialMedia">
-            {user?.whatsapp && (
+            {user?.tel && (
               <Link
                 to={`https://wa.me/${
-                  user.contact.whatsapp
+                  user.tel
                 }?text=${"hola me interesa"}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -49,7 +49,7 @@ const UserModalProfile = ({ user }) => {
                 <FaFacebook className="icon" />
               </Link>
             )}
-            {user?.contact?.Instagram && (
+            {user?.Instagram && (
               <Link
                 to={user?.Instagram}
                 target="_blank"

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavHeader, Header, MainUserCards, Reviews } from "../index.js";
+import { NavHeader, Header, MainUserCards, Matching } from "../index.js";
 
 const HomeScreen = () => {
   return (
@@ -8,7 +8,7 @@ const HomeScreen = () => {
       <main>
         <Header />
         <MainUserCards />
-        <Reviews/>
+        <Matching/>
       </main>
     </>
   );

@@ -39,6 +39,10 @@ footer {
     display: block;
 }
 
+.footer-link:hover{
+    color: #e0cece;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -49,9 +53,6 @@ li {
     margin-bottom: 8px;
 }
 
-a {
-    text-decoration: none;
-}
 
 .footer-bottom {
     text-align: left;
@@ -71,14 +72,6 @@ a {
     font-size: 1rem;
 }
 
-/* Estilo para los iconos de redes sociales */
-.social-media-icon {
-    width: 24px; /* Tamaño del icono */
-    height: 24px; /* Tamaño del icono */
-    fill: #ffff; /* Color de los iconos */
-    transition: fill 0.3s; /* Transición de color al pasar el ratón */
-}
-
-.social-media-link:hover .social-media-icon {
-    fill: #007bff; /* Color de los iconos al pasar el ratón */
+.icon-size{
+    font-size: 25px;
 }

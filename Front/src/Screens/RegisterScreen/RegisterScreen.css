@@ -10,14 +10,14 @@
 .register form{
     padding: 50px 90px 50px 80px;
     width: 550px;
-    height: 800px;
+    min-height: 650px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
 
     & h2{
-        font-size: 50px;
+        font-size: 36px;
         text-align: center;
         color: #025131;
         
@@ -30,7 +30,7 @@
 
     & .par{
         display: flex;
-        gap: 30px;
+        gap: 20px;
         flex-direction: column;
         width: 45%;
     }
@@ -45,5 +45,9 @@
 }
 
 .error {
-    font-size: 10px;
+    font-size: 1rem;
+    color: red;
+}
+.botonera {
+    margin-top: 16px;
 }

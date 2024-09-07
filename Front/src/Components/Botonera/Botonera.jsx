@@ -1,19 +1,27 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-import './Botonera.css'
+import "./Botonera.css";
 
-const Botonera = () => {
-    return (
-        <div className='botonera'>
-            <NavLink to={'/'} className='boton'>
-                Volver
-            </NavLink>
-            <button className='boton aceptar' type='submit'>
-                Aceptar
-            </button>
-        </div>
-    )
-}
+const Botonera = ({ isValid, touched }) => {
+    const isFormTouched = Object.values(touched).some((field) => field === true);
 
-export default Botonera
+    console.log(isValid)
+    console.log(isFormTouched)
+  return (
+    <div className="botonera">
+      <NavLink to={"/"} className="boton">
+        Volver
+      </NavLink>
+      <button
+        className={`${!isFormTouched ? "boton boton-desactivado" : "boton aceptar"}`}
+        type="submit"
+        disabled={!isFormTouched}
+      >
+        Aceptar
+      </button>
+    </div>
+  );
+};
+
+export default Botonera;

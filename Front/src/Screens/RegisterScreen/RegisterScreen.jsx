@@ -11,17 +11,7 @@ const RegisterScreen = () => {
   const [loading, setLoading] = useState(true);
   const [userLogged, setUserLogged] = useState(null);
 
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-  };
-  
-  const token = getCookie('token');
-  console.log(token);
-  
-
+ 
   const navigate = useNavigate();
 
   const handleGetProfessions = async () => {
@@ -46,8 +36,12 @@ const RegisterScreen = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("El nombre es obligatorio"),
     last_name: Yup.string().required("El apellido es obligatorio"),
+    professionId: Yup.string().required("Seleccione una categoría"),
+    sexo: Yup.string().required("Seleccione un género"),
     email: Yup.string()
       .email("Email inválido")
+      .min(8, "El email debe tener al menos 8 caracteres")
+      .max(25, "El email no puede tener más de 25 caracteres")
       .required("El email es obligatorio"),
     password: Yup.string()
       .min(8, "La contraseña debe tener al menos 8 caracteres")
@@ -56,19 +50,14 @@ const RegisterScreen = () => {
         /[A-Z]/,
         "La contraseña debe contener al menos una letra mayúscula"
       )
-      .matches(
-        /[a-z]/,
-        "La contraseña debe contener al menos una letra minúscula"
-      )
       .matches(/[0-9]/, "La contraseña debe contener al menos un número")
       .matches(/[\W_]/, "La contraseña debe contener al menos un símbolo")
       .required("La contraseña es obligatoria"),
     repetir: Yup.string()
       .oneOf([Yup.ref("password"), null], "Las contraseñas deben coincidir")
       .required("Debe confirmar su contraseña"),
-    professionId: Yup.string().required("Seleccione una categoría"),
-    sexo: Yup.string().required("Seleccione un género"),
   });
+  
 
   const handleSubmit = async (values) => {
 
@@ -126,7 +115,7 @@ const RegisterScreen = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ handleChange }) => (
+        {({ handleChange, isValid, touched  }) => (
           <Form>
             <h2>Registrarse</h2>
             <div className="bloqueSuperior">
@@ -175,7 +164,7 @@ const RegisterScreen = () => {
               <span>{"¿Ya estás registrado? "}</span>
               <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
             </div>
-            <Botonera />
+            <Botonera isValid={isValid} touched={touched} />
           </Form>
         )}
       </Formik>

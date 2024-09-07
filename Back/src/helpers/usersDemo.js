@@ -104,7 +104,7 @@ module.exports = [
     tel: "2244446245",
     Instagram: "@Nicolas",
     sexo: "MASCULINO",
-    professionId: "20",
+    professionId: "13",
   },
   {
     name: "jose",

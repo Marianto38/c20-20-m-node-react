@@ -8,6 +8,20 @@ import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
   const [professions, setProfessions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [userLogged, setUserLogged] = useState(null);
+
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  };
+  
+  const token = getCookie('token');
+  console.log(token);
+  
+
   const navigate = useNavigate();
 
   const handleGetProfessions = async () => {
@@ -20,6 +34,8 @@ const RegisterScreen = () => {
       }
     } catch (error) {
       console.error("Error fetching professions:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,6 +88,7 @@ const RegisterScreen = () => {
 
     try {
       const response = await createUser(userData);
+      console.log(response)
       if (response.status === 200) {
         Promise.resolve().then(() => {
           navigate("/");
@@ -101,6 +118,9 @@ const RegisterScreen = () => {
 
   return (
     <section className="register">
+         {loading ? (
+      <div className="loader">Cargando profesiones...</div>
+    ) : (
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -108,7 +128,7 @@ const RegisterScreen = () => {
       >
         {({ handleChange }) => (
           <Form>
-            <h2>Registrate</h2>
+            <h2>Registrarse</h2>
             <div className="bloqueSuperior">
               <BloqueSuperior
                 professions={professions}
@@ -159,6 +179,7 @@ const RegisterScreen = () => {
           </Form>
         )}
       </Formik>
+        )}
     </section>
   );
 };

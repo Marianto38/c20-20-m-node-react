@@ -18,7 +18,7 @@ export const createUser = async (userData) => {
 
     if (response.status === 200) {
       console.log("User created successfully:", response.data);
-      return response.data;
+      return response;
     } else {
       console.error("Error creating user:", response.status, response.data);
       throw new Error("Failed to create user");

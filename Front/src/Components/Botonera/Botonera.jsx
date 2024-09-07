@@ -1,22 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
 import "./Botonera.css";
 
 const Botonera = ({ isValid, touched }) => {
-    const isFormTouched = Object.values(touched).some((field) => field === true);
+  const allFieldsTouched =
+    Object.keys(touched).length > 0 &&
+    Object.values(touched).every((field) => field === true);
 
-    console.log(isValid)
-    console.log(isFormTouched)
+  const isButtonEnabled = isValid && allFieldsTouched;
+
+  console.log(isValid, allFieldsTouched);
+
   return (
     <div className="botonera">
       <NavLink to={"/"} className="boton">
         Volver
       </NavLink>
       <button
-        className={`${!isFormTouched ? "boton boton-desactivado" : "boton aceptar"}`}
+        className={`${
+          isButtonEnabled ? "boton aceptar" : "boton boton-desactivado"
+        }`}
         type="submit"
-        disabled={!isFormTouched}
+        disabled={!isButtonEnabled}
       >
         Aceptar
       </button>

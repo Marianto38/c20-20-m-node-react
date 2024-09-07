@@ -11,7 +11,6 @@ const RegisterScreen = () => {
   const [loading, setLoading] = useState(true);
   const [userLogged, setUserLogged] = useState(null);
 
- 
   const navigate = useNavigate();
 
   const handleGetProfessions = async () => {
@@ -57,10 +56,8 @@ const RegisterScreen = () => {
       .oneOf([Yup.ref("password"), null], "Las contraseñas deben coincidir")
       .required("Debe confirmar su contraseña"),
   });
-  
 
   const handleSubmit = async (values) => {
-
     const userData = {
       name: values.name,
       last_name: values.last_name,
@@ -77,7 +74,7 @@ const RegisterScreen = () => {
 
     try {
       const response = await createUser(userData);
-      console.log(response)
+      console.log(response);
       if (response.status === 200) {
         Promise.resolve().then(() => {
           navigate("/");
@@ -107,68 +104,83 @@ const RegisterScreen = () => {
 
   return (
     <section className="register">
-         {loading ? (
-      <div className="loader">Cargando profesiones...</div>
-    ) : (
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ handleChange, isValid, touched  }) => (
-          <Form>
-            <h2>Registrarse</h2>
-            <div className="bloqueSuperior">
-              <BloqueSuperior
-                professions={professions}
-                handleChange={handleChange}
-              />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Email"}
-                name="email"
-                component={Field}
-              />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Contraseña"}
-                name="password"
-                type="password"
-                component={Field}
-              />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Repetir contraseña"}
-                name="repetir"
-                type="password"
-                component={({ field, form }) => (
-                  <input
-                    {...field}
-                    type="password"
-                    onChange={(e) => {
-                      form.setFieldValue("repetir", e.target.value);
-                    }}
-                    value={field.value}
-                  />
-                )}
-              />
-              <ErrorMessage name="repetir" component="div" className="error" />
-            </div>
+      {loading ? (
+        <div className="loader">Cargando profesiones...</div>
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ handleChange, isValid, touched, errors }) => (
+            <Form>
+              <h2>Registrarse</h2>
+              <div className="bloqueSuperior">
+                <BloqueSuperior
+                  professions={professions}
+                  handleChange={handleChange}
+                />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Email"}
+                  name="email"
+                  component={Field}
+                />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Contraseña"}
+                  name="password"
+                  type="password"
+                  component={Field}
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Repetir contraseña"}
+                  name="repetir"
+                  type="password"
+                  component={({ field, form }) => (
+                    <input
+                      {...field}
+                      type="password"
+                      onChange={(e) => {
+                        form.setFieldValue("repetir", e.target.value);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />
+                <ErrorMessage
+                  name="repetir"
+                  component="div"
+                  className="error"
+                />
+              </div>
 
-            <div>
-              <span>{"¿Ya estás registrado? "}</span>
-              <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
-            </div>
-            <Botonera isValid={isValid} touched={touched} />
-          </Form>
-        )}
-      </Formik>
-        )}
+              <div>
+                <span>{"¿Ya estás registrado? "}</span>
+                <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
+              </div>
+              <Botonera
+                isValid={
+                  isValid &&
+                  Object.keys(errors).length === 0 &&
+                  Object.keys(touched).length > 0
+                }
+                touched={touched}
+              />
+            </Form>
+          )}
+        </Formik>
+      )}
     </section>
   );
 };

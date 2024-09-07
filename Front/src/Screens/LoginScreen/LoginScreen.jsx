@@ -85,6 +85,9 @@ const LoginScreen = () => {
                 <span>{"¿No estás registrado? "}</span>
                 <NavLink to={"/sign-up"}>{"Regístrate"}</NavLink>
               </div>
+              <div>
+                <NavLink style={{color:'black', textAlign:'start'}} to={"/sign-up"}>{"¿Olvidaste tu contraseña? "}</NavLink>
+              </div>
             </div>
             <Botonera
               isValid={

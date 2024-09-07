@@ -1,5 +1,9 @@
 import React from 'react'
 import './Footer.css'
+import { PiLinkedinLogoLight } from 'react-icons/pi';
+import { FaXTwitter } from 'react-icons/fa6';
+import { GrInstagram } from 'react-icons/gr';
+import { BsFacebook } from 'react-icons/bs';
 
 const Footer = () => {
     return (
@@ -25,10 +29,10 @@ const Footer = () => {
                 <div className='footer-right'>
                     <h2 className='footer-title'>Síguenos</h2>
                     <ul>
-                        <li><a className='footer-link' href='#' target='_blank'>Linkedin</a></li>
-                        <li><a className='footer-link' href='#' target='_blank'>X</a></li>
-                        <li><a className='footer-link' href='#' target='_blank'>Instagram</a></li>
-                        <li><a className='footer-link' href='#' target='_blank'>Facebook</a></li>
+                        <li><a className='footer-link' href='https://www.linkedin.com/' target='_blank'><PiLinkedinLogoLight className='icon-size' /></a></li>
+                        <li><a className='footer-link' href='https://www.x.com/' target='_blank'><FaXTwitter className='icon-size' /></a></li>
+                        <li><a className='footer-link' href='https://www.instagram.com/' target='_blank'><GrInstagram className='icon-size' /></a></li>
+                        <li><a className='footer-link' href='https://web.facebook.com/' target='_blank'><BsFacebook className='icon-size' /></a></li>
                     </ul>
                 </div>
             </div>

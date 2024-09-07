@@ -3,6 +3,7 @@ import "./UserModalProfile.css";
 import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
+import { capitalizeFirstLetter } from "../../../utils/utils";
 
 const UserModalProfile = ({ user }) => {
   return (
@@ -20,13 +21,13 @@ const UserModalProfile = ({ user }) => {
 
         <article className="userModalProfile-info">
           <p className="userModalProfile-name">
-            {user?.name} {user?.last_name}
+            {capitalizeFirstLetter(user?.name)} {capitalizeFirstLetter(user?.last_name)}
           </p>
           <p className="userModalProfile-email">{user?.email}</p>
           <p className="userModalProfile-category">
             {user?.Profession?.name?.toUpperCase()}
           </p>
-          <p className="userModalProfile-description">{user?.description}</p>
+          <p className="userModalProfile-description">{capitalizeFirstLetter(user?.description)}</p>
           <p className="userModalProfile-contact">Contáctame</p>
           <div className="userModalProfile-socialMedia">
             {user?.tel && (
@@ -61,7 +62,8 @@ const UserModalProfile = ({ user }) => {
           </div>
         </article>
         <p className="userModalProfile-rating">
-          {user?.reviews || 'Sin'} <span>Opiniones</span>
+        {user?.Reviews?.length > 0 ? user.Reviews.length : "Sin"}{" "}
+        <span>opiniones</span>
         </p>
       </div>
     </>

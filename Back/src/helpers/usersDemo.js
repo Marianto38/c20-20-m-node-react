@@ -104,21 +104,21 @@ module.exports = [
     tel: "2244446245",
     Instagram: "@Nicolas",
     sexo: "MASCULINO",
-    professionId: "20",
+    professionId: "13",
   },
   {
-    name: "Jose",
+    name: "jose",
     last_name: "Sat",
     image: "https://c.superprof.com/i/m/653090/300/20240131130912/653090.webp",
     birthdate: "21/04/2021",
     description:
-      "Soy el mejor QA con un enfoque en la excelencia y el aseguramiento de la calidad, buscando siempre mejorar los procesos de pruebas.",
+      "soy el mejor QA con un enfoque en la excelencia y el aseguramiento de la calidad, buscando siempre mejorar los procesos de pruebas.",
     password: "Admin@123",
     email: "josesat@gmail.com",
     tel: "2244446245",
     Instagram: "@Jose",
     sexo: "MASCULINO",
-    professionId: "18",
+    professionId: "14",
   },
   {
     name: "Cristofer",
@@ -148,7 +148,7 @@ module.exports = [
     tel: "2244446245",
     Instagram: "@Maria",
     sexo: "FEMENINO",
-    professionId: "15",
+    professionId: "13",
   },
   {
     name: "Malinda",
@@ -163,7 +163,7 @@ module.exports = [
     tel: "2244446245",
     Instagram: "@Malinda",
     sexo: "FEMENINO",
-    professionId: "11",
+    professionId: "40",
   },
   {
     name: "Lautaro",
@@ -178,7 +178,7 @@ module.exports = [
     tel: "2244446245",
     Instagram: "@Lautaro",
     sexo: "MASCULINO",
-    professionId: "10",
+    professionId: "13",
   },
   {
     name: "Franco",

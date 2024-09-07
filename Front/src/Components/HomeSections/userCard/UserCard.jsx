@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./userCard.css";
 import { GoHeart } from "react-icons/go";
 import { PiHeartDuotone } from "react-icons/pi";
-import { truncate } from "../../../utils/utils";
+import { capitalizeFirstLetter, truncate } from "../../../utils/utils";
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserModalProfile from "../UserModalProfile/UserModalProfile";
@@ -34,8 +34,8 @@ const UserCard = ({ user }) => {
             }}
           ></figure>
           <article className="userCard-info">
-            <p className="userCard-name">{user?.name}</p>
-            <p className="userCard-category">{user?.Profession?.name}</p>
+            <p className="userCard-name">{capitalizeFirstLetter(user?.name)}</p>
+            <p className="userCard-category">{capitalizeFirstLetter(user?.Profession?.name)}</p>
           </article>
         </div>
         <article className="userCard-details">
@@ -45,7 +45,7 @@ const UserCard = ({ user }) => {
           </p>
 
           <p className="userCard-description">
-            {truncate(user?.description, 65)}
+            {capitalizeFirstLetter(truncate(user?.description, 65))}
           </p>
         </article>
         <PiHeartDuotone

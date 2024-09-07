@@ -8,6 +8,9 @@ import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
   const [professions, setProfessions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [userLogged, setUserLogged] = useState(null);
+
   const navigate = useNavigate();
 
   const handleGetProfessions = async () => {
@@ -20,6 +23,8 @@ const RegisterScreen = () => {
       }
     } catch (error) {
       console.error("Error fetching professions:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,8 +35,12 @@ const RegisterScreen = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("El nombre es obligatorio"),
     last_name: Yup.string().required("El apellido es obligatorio"),
+    professionId: Yup.string().required("Seleccione una categoría"),
+    sexo: Yup.string().required("Seleccione un género"),
     email: Yup.string()
       .email("Email inválido")
+      .min(8, "El email debe tener al menos 8 caracteres")
+      .max(25, "El email no puede tener más de 25 caracteres")
       .required("El email es obligatorio"),
     password: Yup.string()
       .min(8, "La contraseña debe tener al menos 8 caracteres")
@@ -40,22 +49,15 @@ const RegisterScreen = () => {
         /[A-Z]/,
         "La contraseña debe contener al menos una letra mayúscula"
       )
-      .matches(
-        /[a-z]/,
-        "La contraseña debe contener al menos una letra minúscula"
-      )
       .matches(/[0-9]/, "La contraseña debe contener al menos un número")
       .matches(/[\W_]/, "La contraseña debe contener al menos un símbolo")
       .required("La contraseña es obligatoria"),
     repetir: Yup.string()
       .oneOf([Yup.ref("password"), null], "Las contraseñas deben coincidir")
       .required("Debe confirmar su contraseña"),
-    professionId: Yup.string().required("Seleccione una categoría"),
-    sexo: Yup.string().required("Seleccione un género"),
   });
 
   const handleSubmit = async (values) => {
-
     const userData = {
       name: values.name,
       last_name: values.last_name,
@@ -72,6 +74,7 @@ const RegisterScreen = () => {
 
     try {
       const response = await createUser(userData);
+      console.log(response);
       if (response.status === 200) {
         Promise.resolve().then(() => {
           navigate("/");
@@ -101,64 +104,83 @@ const RegisterScreen = () => {
 
   return (
     <section className="register">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ handleChange }) => (
-          <Form>
-            <h2>Registrate</h2>
-            <div className="bloqueSuperior">
-              <BloqueSuperior
-                professions={professions}
-                handleChange={handleChange}
-              />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Email"}
-                name="email"
-                component={Field}
-              />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Contraseña"}
-                name="password"
-                type="password"
-                component={Field}
-              />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-            <div>
-              <BloqueInputLabel
-                label={"Repetir contraseña"}
-                name="repetir"
-                type="password"
-                component={({ field, form }) => (
-                  <input
-                    {...field}
-                    type="password"
-                    onChange={(e) => {
-                      form.setFieldValue("repetir", e.target.value);
-                    }}
-                    value={field.value}
-                  />
-                )}
-              />
-              <ErrorMessage name="repetir" component="div" className="error" />
-            </div>
+      {loading ? (
+        <div className="loader">Cargando profesiones...</div>
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ handleChange, isValid, touched, errors }) => (
+            <Form>
+              <h2>Registrarse</h2>
+              <div className="bloqueSuperior">
+                <BloqueSuperior
+                  professions={professions}
+                  handleChange={handleChange}
+                />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Email"}
+                  name="email"
+                  component={Field}
+                />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Contraseña"}
+                  name="password"
+                  type="password"
+                  component={Field}
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+              </div>
+              <div>
+                <BloqueInputLabel
+                  label={"Repetir contraseña"}
+                  name="repetir"
+                  type="password"
+                  component={({ field, form }) => (
+                    <input
+                      {...field}
+                      type="password"
+                      onChange={(e) => {
+                        form.setFieldValue("repetir", e.target.value);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />
+                <ErrorMessage
+                  name="repetir"
+                  component="div"
+                  className="error"
+                />
+              </div>
 
-            <div>
-              <span>{"¿Ya estás registrado? "}</span>
-              <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
-            </div>
-            <Botonera />
-          </Form>
-        )}
-      </Formik>
+              <div>
+                <span>{"¿Ya estás registrado? "}</span>
+                <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>
+              </div>
+              <Botonera
+                isValid={
+                  isValid &&
+                  Object.keys(errors).length === 0 &&
+                  Object.keys(touched).length > 0
+                }
+                touched={touched}
+              />
+            </Form>
+          )}
+        </Formik>
+      )}
     </section>
   );
 };

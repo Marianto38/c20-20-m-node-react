@@ -44,7 +44,6 @@
   color: white;
   scrollbar-width: none; 
   -ms-overflow-style: none;
-  cursor: pointer;
 }
 .userModalProfile-category {
   color: #017748;
@@ -87,6 +86,7 @@ color: black;
   width: 1.5rem;
   height: 1.5rem;
   color: white;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

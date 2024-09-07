@@ -1,5 +1,5 @@
 .matching {
-  height: 100vh;
+  height: auto;
 }
 .matchingCard-container {
   display: flex;
@@ -69,10 +69,11 @@
 .matchingCard-right {
   position: absolute;
   left: 70%;
-  bottom: 10%;
+  bottom: 15%;
   transform: translate(-50%, -50%);
   transform: rotate(25deg);
   transition: transform 0.3s ease-in-out;
+  z-index: -1;
 }
 
 .matchingCard-middle {
@@ -129,4 +130,42 @@
 .matchingCard-container figure img:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+  .matchingCard-left {
+    position: absolute;
+    left: -15%;
+    bottom: 0%;
+    transform: translate(-50%, -50%);
+    transform: rotate(-25deg);
+    transition: transform 0.3s ease-in-out;
+  }
+  .matchingCard-right {
+    position: absolute;
+    left: 70%;
+    bottom: 15%;
+    transform: translate(-50%, -50%);
+    transform: rotate(25deg);
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+  }
+  .matchingCard-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    cursor: pointer;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    height: 60vh;
+    h3 {
+      font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
 }

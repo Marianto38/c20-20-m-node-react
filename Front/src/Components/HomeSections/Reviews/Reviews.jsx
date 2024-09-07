@@ -12,7 +12,6 @@ function Card({ text, name, color }) {
 }
 
 const Reviews = ({userActive}) => {
-  console.log(userActive)
 
   const colors = ["#F65035", "#7FBFA2", "#FFCD54", "#3845AD", "#F9CDCC"]; 
   const breakpointColumnsObj = {

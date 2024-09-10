@@ -2,11 +2,18 @@ import { BsWhatsapp } from "react-icons/bs";
 import UserCard from "../userCard/UserCard";
 import "./mainUserCards.css";
 import { getAllUsers } from "../../../services/services";
-import { useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
+import { AppContext } from "../../appContext/AppContext";
 
 const MainUserCards = () => {
   const [allUsersData, setAllUsersData] = useState([]);
+  const {
+    usersSelectedByProfession,
+    setUsersSelectedByProfession,
+    noUserFounded,
+  } = useContext(AppContext);
+  const sectionRef = useRef(null);
 
   const handleGetAllUsers = async () => {
     try {
@@ -26,11 +33,24 @@ const MainUserCards = () => {
     handleGetAllUsers();
   }, []);
 
+  useEffect(() => {
+    if (usersSelectedByProfession.length > 0 && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" }); // Desplazar con un efecto suave
+    }
+  }, [usersSelectedByProfession]);
+
+  console.log(noUserFounded);
+
+  const usersToDisplay =
+    usersSelectedByProfession.length > 0
+      ? usersSelectedByProfession
+      : allUsersData;
+
   return (
-    <section className="SectionUserCards">
+    <section ref={sectionRef} className="SectionUserCards">
       <h2>¡Busca, interactúa y aprende!</h2>
       <div className="SectionUserCards-container">
-        {allUsersData?.slice(0, 6).map((user) => (
+        {usersToDisplay.slice(0, 6).map((user) => (
           <UserCard key={user.id} user={user} />
         ))}
       </div>

@@ -9,7 +9,6 @@ const Botonera = ({ isValid, touched }) => {
 
   const isButtonEnabled = isValid && allFieldsTouched;
 
-  console.log(isValid, allFieldsTouched);
 
   return (
     <div className="botonera">

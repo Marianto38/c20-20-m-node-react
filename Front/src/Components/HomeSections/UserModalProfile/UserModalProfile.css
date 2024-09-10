@@ -25,7 +25,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
 }
 
 .userModalProfile-info {
@@ -42,7 +41,7 @@
   background-color: #017748;
   border-radius: 0 2rem 2rem 0;
   color: white;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .userModalProfile-category {
@@ -73,20 +72,22 @@
 }
 
 .userModalProfile-contact {
-margin: 1.5rem 0 1rem 0;
+  margin: 1.5rem 0 1rem 0;
 }
 .userModalProfile-socialMedia {
-display: flex;
-flex-direction: row;
-gap: 1rem;
-color: black;
-
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  color: black;
 }
-.icon {
+.userModalProfile-icon {
   width: 1.5rem;
   height: 1.5rem;
   color: white;
   cursor: pointer;
+}
+.userModalProfile-description {
+  min-height: 150px;
 }
 
 @media (max-width: 768px) {
@@ -101,14 +102,12 @@ color: black;
     padding: 1rem;
   }
   .userModalProfile-info {
-border-radius: 0 0 2rem 2rem;
+    border-radius: 0 0 2rem 2rem;
     width: 100%;
-
   }
   .userModalProfile-containerImage {
     width: 100%;
-      border-radius: 2rem 2rem 0 0;
-    
+    border-radius: 2rem 2rem 0 0;
   }
   .userModalProfile-rating {
     bottom: 50%;
@@ -118,5 +117,4 @@ border-radius: 0 0 2rem 2rem;
     font-weight: 700;
     font-size: 1.5rem;
   }
-  
 }

@@ -21,24 +21,27 @@ const UserModalProfile = ({ user }) => {
 
         <article className="userModalProfile-info">
           <p className="userModalProfile-name">
-            {capitalizeFirstLetter(user?.name)} {capitalizeFirstLetter(user?.last_name)}
+            {capitalizeFirstLetter(user?.name)}{" "}
+            {capitalizeFirstLetter(user?.last_name)}
           </p>
           <p className="userModalProfile-email">{user?.email}</p>
           <p className="userModalProfile-category">
             {user?.Profession?.name?.toUpperCase()}
           </p>
-          <p className="userModalProfile-description">{capitalizeFirstLetter(user?.description)}</p>
+          <p className="userModalProfile-description">
+            {user?.description
+              ? capitalizeFirstLetter(user?.description)
+              : null}
+          </p>
           <p className="userModalProfile-contact">Contáctame</p>
           <div className="userModalProfile-socialMedia">
             {user?.tel && (
               <Link
-                to={`https://wa.me/${
-                  user.tel
-                }?text=${"hola me interesa"}`}
+                to={`https://wa.me/${user.tel}?text=${"hola me interesa"}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaWhatsapp className="icon" />
+                <FaWhatsapp className="userModalProfile-icon" />
               </Link>
             )}
             {user?.contact?.facebook && (
@@ -47,7 +50,7 @@ const UserModalProfile = ({ user }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaFacebook className="icon" />
+                <FaFacebook className="userModalProfile-icon" />
               </Link>
             )}
             {user?.Instagram && (
@@ -56,14 +59,14 @@ const UserModalProfile = ({ user }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaInstagram className="icon" />
+                <FaInstagram className="userModalProfile-icon" />
               </Link>
             )}
           </div>
         </article>
         <p className="userModalProfile-rating">
-        {user?.Reviews?.length > 0 ? user.Reviews.length : "Sin"}{" "}
-        <span>opiniones</span>
+          {user?.Reviews?.length > 0 ? user.Reviews.length : "Sin"}{" "}
+          <span>opiniones</span>
         </p>
       </div>
     </>

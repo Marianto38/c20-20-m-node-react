@@ -1,58 +1,77 @@
-import React from 'react'
+import React, { useContext, useRef, useState } from "react";
 
-import './Header.css'
+import "./Header.css";
+import { professionsList } from "./IconsList";
+import SuggestedSearch from "../../suggestedSearch/SuggestedSearch";
+import Selector from "../../Selector/Selector";
 
 const Header = () => {
-    return (
-        <header className='home-header'>
-            <h2>Donde tu conocimiento es buscado</h2>
-            <div className='search'>
-                <input type="text" placeholder='Busca un conocimiento que desees intercambiar'/>
-                <span className='icon'>🔍</span>
-            </div>
-            <Selector />
-        </header>
-    )
-}
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProfessions, setFilteredProfessions] = useState("");
+  const [typingTimer, setTypingTimer] = useState(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-export default Header
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
 
-const Selector = () => {
-    return (
-        <div className='selector'>
-            <ul className='list'>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>1</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>2</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>3</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>4</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>5</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>6</span>
-                </li>
-                <li className='item'>
-                    <span>icono</span>
-                    <span>7</span>
-                </li>
-            </ul>
-            <span className='arrow'>
-                {'>'}
-            </span>
-        </div>
-    )
-}
+    if (typingTimer) {
+      clearTimeout(typingTimer);
+    }
+
+    const newTimer = setTimeout(() => {
+      handleSearchClick();
+    }, 500);
+
+    setTypingTimer(newTimer);
+  };
+  const handleSearchClick = () => {
+    const results = professionsList.filter((profession) =>
+      profession.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProfessions(results);
+    setShowSuggestions(true);
+    console.log(results);
+
+    // if (results.length === 0) {
+    // }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearchClick();
+    }
+  };
+
+  const handleSuggestionClick = () => {
+    setSearchTerm("");
+    setShowSuggestions(false);
+  };
+
+  return (
+    <header className="home-header">
+      <h2>Donde tu conocimiento es buscado</h2>
+      <div className="search" style={{ position: "relative" }}>
+        <input
+          type="text"
+          placeholder="Busca un conocimiento que desees intercambiar"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyDown={handleKeyDown}
+        />
+        <span className="icon" onClick={handleSearchClick}>
+          🔍
+        </span>
+        {showSuggestions && filteredProfessions.length > 0 && (
+          <SuggestedSearch
+            filteredProfessions={filteredProfessions}
+            onSuggestionClick={handleSuggestionClick}
+          />
+        )}
+      </div>
+
+      <Selector />
+    </header>
+  );
+};
+
+export default Header;

@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router-dom";
-import { createUser, getProfessions } from "../../services/services.js";
+import { createUser, getProfessions, login } from "../../services/services.js";
 import { BloqueInputLabel, Botonera } from "../index.js";
 import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
   const [professions, setProfessions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userLogged, setUserLogged] = useState(null);
 
   const navigate = useNavigate();
 
@@ -72,20 +71,25 @@ const RegisterScreen = () => {
       sexo: values.sexo,
     };
 
-    try {
-      const response = await createUser(userData);
-      console.log(response);
-      if (response.status === 200) {
-        Promise.resolve().then(() => {
-          navigate("/");
-        });
+  try {
+    const createUserResponse = await createUser(userData);
+    
+    if (createUserResponse.status === 200) {
+      const loginResponse = await login({ email: values.email, password: values.password });
+      
+      if (loginResponse.status === 200) {
+        console.log("Login successful:", loginResponse.data);
+        navigate("/");
       } else {
-        console.log("Error:", response.statusText);
+        console.error("Error logging in:", loginResponse.status, loginResponse.data);
       }
-    } catch (error) {
-      console.error("Error en el registro:", error);
+    } else {
+      console.error("Error creating user:", createUserResponse.status, createUserResponse.data);
     }
-  };
+  } catch (error) {
+    console.error("Error en el registro o inicio de sesión:", error);
+  }
+};
 
   const initialValues = {
     name: "",

@@ -53,8 +53,9 @@ const Matching = () => {
     return (
         <>
 <section className='matching'>
+<h3>¡Matchea tus conocimientos!</h3>
         <div className="matchingCard-container">
-            <h3>¡Matchea tus conocimientos!</h3>
+          
             <div className="matchingCard-left">
                 {deniedUsers.slice(-1).map((user, index) => (
                     <div key={user?.id || index} className="matchingCard-containerImage">

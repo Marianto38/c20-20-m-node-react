@@ -35,7 +35,9 @@ const UserCard = ({ user }) => {
           ></figure>
           <article className="userCard-info">
             <p className="userCard-name">{capitalizeFirstLetter(user?.name)}</p>
-            <p className="userCard-category">{capitalizeFirstLetter(user?.Profession?.name)}</p>
+            <p className="userCard-category">
+              {capitalizeFirstLetter(user?.Profession?.name)}
+            </p>
           </article>
         </div>
         <article className="userCard-details">
@@ -45,7 +47,9 @@ const UserCard = ({ user }) => {
           </p>
 
           <p className="userCard-description">
-            {capitalizeFirstLetter(truncate(user?.description, 65))}
+            {user?.description
+              ? capitalizeFirstLetter(truncate(user.description, 65))
+              : null}
           </p>
         </article>
         <PiHeartDuotone

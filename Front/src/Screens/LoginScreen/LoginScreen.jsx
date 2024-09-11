@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import { BloqueInputLabel, Botonera } from "../index.js";
 import "./LoginScreen.css";
 import { login } from "../../services/services.js";
@@ -28,7 +27,6 @@ const LoginScreen = () => {
       .required("La contraseña es obligatoria"),
   });
 
-  // Manejo de envío del formulario
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await login(values);
@@ -86,7 +84,12 @@ const LoginScreen = () => {
                 <NavLink to={"/sign-up"}>{"Regístrate"}</NavLink>
               </div>
               <div>
-                <NavLink style={{color:'black', textAlign:'start'}} to={"/sign-up"}>{"¿Olvidaste tu contraseña? "}</NavLink>
+                <NavLink
+                  style={{ color: "black", textAlign: "start" }}
+                  to={"/sign-up"}
+                >
+                  {"¿Olvidaste tu contraseña? "}
+                </NavLink>
               </div>
             </div>
             <Botonera

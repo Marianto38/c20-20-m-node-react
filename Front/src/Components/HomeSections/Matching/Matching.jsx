@@ -72,7 +72,7 @@ const Matching = () => {
                             <p className="matchingCard-name">{capitalizeFirstLetter(user?.name) || 'Nombre no disponible'}</p>
                             <p className="matchingCard-category">{user?.Profession?.name || 'Categoría no disponible'}</p>
                             <article className='matchingCard-buttonsMatching' >
-                                <button className='matchingCard-buttons close' style={{fontSize: "3rem"}}>
+                                <button className='matchingCard-buttons close' style={{fontSize: "3rem", cursor:'auto'}}>
                                     <IoIosCloseCircle />
                                 </button>
                             </article>

@@ -22,8 +22,8 @@ const UserCard = ({ user }) => {
 
   return (
     <>
-      <div className="userCard-container" onClick={() => handleToProfile()}>
-        <div className="userCard-containerImage">
+      <div className="userCard-container">
+        <div className="userCard-containerImage"  onClick={() => handleToProfile()}>
           <figure
             className="userCard-containerImage"
             style={{

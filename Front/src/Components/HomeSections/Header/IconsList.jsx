@@ -1,7 +1,9 @@
 import { FaGuitar, FaDrum, FaChalkboardTeacher, FaTools, FaLightbulb, FaWrench, FaHammer, FaCode, FaCamera, FaMusic, FaDumbbell, FaBalanceScale, FaUserMd, FaStethoscope, FaDog, FaBrain, FaPaintBrush, FaFilm, FaPenFancy, FaTractor, FaLeaf, FaPlane, FaShip, FaTree, FaVideo, FaProjectDiagram, FaBullhorn, FaBicycle } from 'react-icons/fa';
-import { GiSewingMachine, GiChemicalDrop, GiBee, GiWateringCan, GiBowlingPin, GiGrandPiano, GiViolin } from 'react-icons/gi';
+import { GiSewingMachine, GiChemicalDrop, GiBee, GiWateringCan, GiBowlingPin, GiGrandPiano, GiViolin, GiCook } from 'react-icons/gi';
+import { GrCloudSoftware } from 'react-icons/gr';
 import { MdFitnessCenter, MdPsychology, MdEngineering, MdEdit } from 'react-icons/md';
 import { PiChefHat } from 'react-icons/pi';
+import { SiCodechef } from 'react-icons/si';
 
 
 export const professionsList = [
@@ -18,15 +20,15 @@ export const professionsList = [
     { name: "Fontanero", icon: <FaTools /> },
     { name: "Carpintero", icon: <FaHammer /> },
     { name: "Desarrollador Web", icon: <FaCode /> },
-    { name: "Desarrollador de Software", icon: <FaCode /> },
+    { name: "Desarrollador de Software", icon: <GrCloudSoftware /> },
     { name: "Diseñador Gráfico", icon: <FaPaintBrush /> },
     { name: "Fotógrafo", icon: <FaCamera /> },
     { name: "Editor de Fotos", icon: <MdEdit /> },
     { name: "Productor de Música", icon: <FaMusic /> },
     { name: "DJ", icon: <FaMusic /> },
     { name: "Chef", icon: <PiChefHat /> },
-    { name: "Panadero", icon: <PiChefHat /> },
-    { name: "Pastelero", icon: <PiChefHat /> },
+    { name: "Panadero", icon: <SiCodechef /> },
+    { name: "Pastelero", icon: <GiCook /> },
     // { name: "Barista", icon: <FaCoffee /> },
     // { name: "Bartender", icon: <FaCocktail /> },
     // { name: "Nutricionista", icon: <FaAppleAlt /> },

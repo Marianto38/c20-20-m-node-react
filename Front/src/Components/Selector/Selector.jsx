@@ -1,13 +1,18 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { professionsList } from "../HomeSections/Header/IconsList";
 import { AppContext } from "../appContext/AppContext";
 import Swal from "sweetalert2";
-import { getUsersByProfesion } from "../../services/services";
+import { getAllUsers, getUsersByProfesion } from "../../services/services";
 
 const Selector = () => {
   const listRef = useRef(null);
+  const [allUsersData, setAllUsersData] = useState([]);
+  const [orderedProfessionsList, setOrderedProfessionsList] = useState(
+    professionsList
+  );
 
+  console.log(allUsersData)
   const scrollLeft = () => {
     if (listRef.current) {
       listRef.current.scrollBy({ left: -200, behavior: "smooth" });
@@ -21,11 +26,46 @@ const Selector = () => {
   };
 
   const {
-    noUserFounded,
     setNoUserFounded,
-    usersSelectedByProfession,
     setUsersSelectedByProfession,
   } = useContext(AppContext);
+
+  const handleGetAllUsers = async () => {
+    try {
+      const response = await getAllUsers();
+      if (response.status === 200) {
+        setAllUsersData(response.data);
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error al obtener usuarios:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (allUsersData.length > 0) {
+      const associatedProfessions = allUsersData
+        .map((user) => user.Profession?.name)
+        .filter(Boolean);
+
+      const orderedList = [...professionsList].sort((a, b) => {
+        const isAInAssociated = associatedProfessions.includes(a.name);
+        const isBInAssociated = associatedProfessions.includes(b.name);
+
+        if (isAInAssociated && isBInAssociated) return 0;
+        if (isAInAssociated) return -1;
+        if (isBInAssociated) return 1;
+        return 0;
+      });
+
+      setOrderedProfessionsList(orderedList);
+    }
+  }, [allUsersData]); 
+
+  useEffect(() => {
+    handleGetAllUsers();
+  }, []);
 
   const handleGetUsersByProfession = async (professionCategorySelected) => {
     try {
@@ -57,6 +97,7 @@ const Selector = () => {
     }
   };
 
+
   return (
     <div className="selector">
       <button
@@ -66,7 +107,7 @@ const Selector = () => {
         <IoIosArrowBack />
       </button>
       <ul className="selector__list" ref={listRef}>
-        {professionsList.map((profession, index) => (
+        {orderedProfessionsList.map((profession, index) => (
           <li
             className="selector__item"
             key={index}

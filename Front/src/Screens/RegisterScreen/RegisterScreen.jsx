@@ -71,25 +71,36 @@ const RegisterScreen = () => {
       sexo: values.sexo,
     };
 
-  try {
-    const createUserResponse = await createUser(userData);
-    
-    if (createUserResponse.status === 200) {
-      const loginResponse = await login({ email: values.email, password: values.password });
-      
-      if (loginResponse.status === 200) {
-        console.log("Login successful:", loginResponse.data);
-        navigate("/");
+    try {
+      const createUserResponse = await createUser(userData);
+
+      if (createUserResponse.status === 200) {
+        const loginResponse = await login({
+          email: values.email,
+          password: values.password,
+        });
+
+        if (loginResponse.status === 200) {
+          console.log("Login successful:", loginResponse.data);
+          navigate("/");
+        } else {
+          console.error(
+            "Error logging in:",
+            loginResponse.status,
+            loginResponse.data
+          );
+        }
       } else {
-        console.error("Error logging in:", loginResponse.status, loginResponse.data);
+        console.error(
+          "Error creating user:",
+          createUserResponse.status,
+          createUserResponse.data
+        );
       }
-    } else {
-      console.error("Error creating user:", createUserResponse.status, createUserResponse.data);
+    } catch (error) {
+      console.error("Error en el registro o inicio de sesión:", error);
     }
-  } catch (error) {
-    console.error("Error en el registro o inicio de sesión:", error);
-  }
-};
+  };
 
   const initialValues = {
     name: "",
@@ -210,11 +221,13 @@ const BloqueSuperior = ({ professions, handleChange }) => (
           onChange={handleChange}
         >
           <option value="" label="Seleccione una categoría" />
-          {professions?.map((profession, index) => (
-            <option key={index} value={profession.name}>
-              {profession.name}
-            </option>
-          ))}
+          {professions
+            ?.sort((a, b) => a.name.localeCompare(b.name)) // Ordenar alfabéticamente por nombre
+            .map((profession, index) => (
+              <option key={index} value={profession.name}>
+                {profession.name}
+              </option>
+            ))}
         </Field>
         <ErrorMessage name="professionId" component="div" className="error" />
       </div>

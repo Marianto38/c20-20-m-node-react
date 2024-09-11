@@ -222,7 +222,7 @@ const BloqueSuperior = ({ professions, handleChange }) => (
         >
           <option value="" label="Seleccione una categoría" />
           {professions
-            ?.sort((a, b) => a.name.localeCompare(b.name)) // Ordenar alfabéticamente por nombre
+            ?.sort((a, b) => a.name.localeCompare(b.name))
             .map((profession, index) => (
               <option key={index} value={profession.name}>
                 {profession.name}

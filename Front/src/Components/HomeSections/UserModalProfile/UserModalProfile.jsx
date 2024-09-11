@@ -55,7 +55,10 @@ const UserModalProfile = ({ user }) => {
             )}
             {user?.Instagram && (
               <Link
-                to={user?.Instagram}
+                to={`https://www.instagram.com/${user.Instagram.replace(
+                  "@",
+                  ""
+                )}`} // Reemplaza '@' por '' y forma la URL completa
                 target="_blank"
                 rel="noopener noreferrer"
               >

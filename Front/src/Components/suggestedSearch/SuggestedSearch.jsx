@@ -20,7 +20,7 @@ const SuggestedSearch = ({ filteredProfessions, onSuggestionClick }) => {
           title: "No se encontraron usuarios disponibles",
           text: "Para la categoría seleccionada.",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 5000,
         });
       }
     } catch (error) {
@@ -32,7 +32,7 @@ const SuggestedSearch = ({ filteredProfessions, onSuggestionClick }) => {
         title: "No se encontraron usuarios disponibles",
         text: "Para la categoría seleccionada.",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 5000,
       });
     }
     onSuggestionClick();

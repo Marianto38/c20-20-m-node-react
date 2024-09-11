@@ -25,7 +25,7 @@ const UserCard = ({ user }) => {
       <div className="userCard-container" onClick={() => handleToProfile()}>
         <div className="userCard-containerImage">
           <figure
-            className="userModalProfile-containerImage"
+            className="userCard-containerImage"
             style={{
               backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.0)), url(${user?.image})`,
               backgroundSize: "cover",

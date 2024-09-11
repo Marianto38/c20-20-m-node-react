@@ -90,8 +90,6 @@ export const getProfessions = async () => {
   }
 };
 
-
-
 export const getUsersByProfesion = async (profession) => {
   try {
     const options = {
@@ -99,16 +97,13 @@ export const getUsersByProfesion = async (profession) => {
         "Content-Type": "application/json",
       },
       params: {
-        profession, 
+        profession,
       },
     };
     const response = await axios.get(URL_GET_USERS_BY_PROFESSION, options);
-    console.log(response)
-
-    return response; 
+    return response;
   } catch (error) {
     console.error("Error fetching users:", error);
     throw error;
   }
 };
-

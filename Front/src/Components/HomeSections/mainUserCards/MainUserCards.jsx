@@ -39,8 +39,6 @@ const MainUserCards = () => {
     }
   }, [usersSelectedByProfession]);
 
-  console.log(noUserFounded);
-
   const usersToDisplay =
     usersSelectedByProfession.length > 0
       ? usersSelectedByProfession

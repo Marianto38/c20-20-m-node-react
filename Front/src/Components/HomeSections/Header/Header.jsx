@@ -30,7 +30,6 @@ const Header = () => {
     );
     setFilteredProfessions(results);
     setShowSuggestions(true);
-    console.log(results);
 
     // if (results.length === 0) {
     // }

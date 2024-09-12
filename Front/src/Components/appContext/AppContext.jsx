@@ -44,10 +44,14 @@ const AppProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    console.log("Token:", token);
-    setIsLogged(!!token);
-  }, []);
+    const checkToken = () => {
+      const token = Cookies.get("token");
+      console.log("Token:", token);
+      setIsLogged(!!token); // Ajusta isLogged en base a la existencia del token
+    };
+
+    checkToken();
+  }, [userLogged]);
 
   useEffect(() => {
     if (userData) {

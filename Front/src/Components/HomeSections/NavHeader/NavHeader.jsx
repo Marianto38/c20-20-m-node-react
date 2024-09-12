@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./NavHeader.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { AppContext } from "../../appContext/AppContext";
 import Cookies from "js-cookie";
 
 const NavHeader = () => {
-  const { isLogged, userLogged } = useContext(AppContext);
+  const { isLogged, userLogged, setIsLogged } = useContext(AppContext);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -24,8 +24,15 @@ const NavHeader = () => {
     Cookies.remove("token");
     localStorage.removeItem("userLogged");
     localStorage.removeItem("userData");
-    navigate("/login");
+    setIsLogged(false);
+    // navigate("/login");
   };
+
+  useEffect(() => {
+    // Este efecto se disparará cuando `userLogged` cambie
+    console.log("Usuario loggeado:", userLogged);
+  }, [userLogged]);
+  
 
   console.log(userLogged);
   return (
@@ -38,11 +45,11 @@ const NavHeader = () => {
           {isLogged ? (
             <div className="user-info" onClick={toggleDropdown}>
               <span className="greeting">
-                ¡Qué bueno verte {userLogged.name}!
+                ¡Qué bueno verte {userLogged?.name}!
               </span>
               {userLogged?.image ? (
                 <img
-                  src={userLogged.image}
+                  src={userLogged?.image}
                   alt="Imagen de perfil"
                   className="profile-image"
                 />

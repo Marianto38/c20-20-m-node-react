@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./userCard.css";
 import { GoHeart } from "react-icons/go";
 import { PiHeartDuotone } from "react-icons/pi";
@@ -6,10 +6,12 @@ import { capitalizeFirstLetter, truncate } from "../../../utils/utils";
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserModalProfile from "../UserModalProfile/UserModalProfile";
+import { AppContext } from "../../appContext/AppContext";
 
 const UserCard = ({ user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLogged } = useContext(AppContext);
   const location = useLocation();
   const navigate = useNavigate();
   const handleCloseModal = () => {
@@ -52,6 +54,7 @@ const UserCard = ({ user }) => {
               : null}
           </p>
         </article>
+        {isLogged ? (
         <PiHeartDuotone
           className={
             isFavorite ? "userCard-heartIconActive" : "userCard-heartIcon"
@@ -60,8 +63,11 @@ const UserCard = ({ user }) => {
             e.stopPropagation();
             setIsFavorite(!isFavorite);
           }}
-        />
-      </div>
+          
+        /> ) : (
+          null
+                )}
+      </div> 
       <ModalComponent isOpen={isModalOpen} onClose={handleCloseModal}>
         <UserModalProfile user={user} />
       </ModalComponent>

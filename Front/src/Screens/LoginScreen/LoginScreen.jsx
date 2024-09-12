@@ -9,7 +9,7 @@ import { AppContext } from "../../Components/appContext/AppContext.jsx";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
-  const { setUserLogged } = useContext(AppContext);
+  const { setUserLogged, isLogged } = useContext(AppContext);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -34,7 +34,6 @@ const LoginScreen = () => {
       const response = await login(values);
 
       if (response.status === 200) {
-        console.log(response.user)
         setUserLogged(response.data.user)
         navigate("/");
       } else {
@@ -46,6 +45,13 @@ const LoginScreen = () => {
       setSubmitting(false);
     }
   };
+  
+  useEffect(() => {
+    if (isLogged) {
+      // Solo navega si userLogged ya está seteado
+      navigate("/");
+    }
+  }, [isLogged, navigate]);
 
   return (
     <div className="login">

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getAllUsers } from '../../../services/services';
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { capitalizeFirstLetter } from '../../../utils/utils';
 import './Matching.css';
 import Reviews from '../Reviews/Reviews';
+import { AppContext } from '../../appContext/AppContext';
 
 const Matching = () => {
     const [allUsersData, setAllUsersData] = useState([]);
@@ -12,6 +13,7 @@ const Matching = () => {
     const [deniedUsers, setDeniedUsers] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [userActive, setUserActive] = useState(allUsersData[0]);
+    const { isLogged, userLogged } = useContext(AppContext);
 
 
     const handleGetAllUsers = async () => {
@@ -52,6 +54,7 @@ const Matching = () => {
 
     return (
         <>
+        {isLogged ? (
 <section className='matching'>
 <h3>¡Matchea tus conocimientos!</h3>
         <div className="matchingCard-container">
@@ -138,6 +141,9 @@ const Matching = () => {
         </div>
         <Reviews userActive={userActive} className='matchingCard-reviews'/>
         </section>
+        ) : (
+            null
+        )}
         </>
     );
 };

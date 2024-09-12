@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import "./NavHeader.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { AppContext } from "../../appContext/AppContext";
 import Cookies from "js-cookie";
+import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 
 const NavHeader = () => {
   const { isLogged, userLogged, setIsLogged } = useContext(AppContext);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   console.log(isLogged);
 
@@ -32,16 +33,32 @@ const NavHeader = () => {
     // Este efecto se disparará cuando `userLogged` cambie
     console.log("Usuario loggeado:", userLogged);
   }, [userLogged]);
-  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup al desmontar el componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   console.log(userLogged);
   return (
     <nav>
-      <div className="home-nav-container">
+      <div className={`home-nav-container ${isScrolled ? "scrolled" : ""}`}>
         <h1 className="title">SkillTrade</h1>
         <ul className="right">
           <li className="question">?</li>
-          <li>Comunidad</li>
+          <li className="comunity">Comunidad</li>
           {isLogged ? (
             <div className="user-info" onClick={toggleDropdown}>
               <span className="greeting">
@@ -69,8 +86,19 @@ const NavHeader = () => {
             </div>
           ) : (
             <>
-              <NavLink to={"/login"}>Iniciar sesión</NavLink>
-              <NavLink to={"/sign-up"}>Registrarse</NavLink>
+              <NavLink to={"/login"} className="login-icon">
+                <FaSignInAlt />
+              </NavLink>
+              <NavLink to={"/login"} className="navlink-login">
+                Iniciar sesión
+              </NavLink>
+
+              <NavLink to={"/sign-up"} className="signup-icon">
+                <FaUserPlus />
+              </NavLink>
+              <NavLink to={"/sign-up"} className="navlink-signup">
+                Registrarse
+              </NavLink>
             </>
           )}
         </ul>

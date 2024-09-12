@@ -19,12 +19,13 @@ const loginUser = async (req, res) =>{
             const token = jwt.sign({ id: existingUser.id, email: existingUser.email}, SECRET_KEY, {expiresIn: '1h'})
 
             res.cookie('token', token, {
-                httpOnly: true,  //solo accesible a través de HTTP
+                httpOnly: false,  //solo accesible a través de HTTP
                 secure: process.env.NODE_ENV === 'production', // solo se envía a través de HTTPS en producción
                 sameSite: 'Strict',  //protección contra CSRF
                 maxAge: 3600000,
               });
-            return res.status(200).json({message: 'login realizado'});
+              const { password, ...userWithoutPassword } = existingUser.dataValues;
+              return res.status(200).json({ message: 'login realizado', user: userWithoutPassword });
         }
         else{
             return res.status(401).json({error: 'Contraseña incorrecta'});

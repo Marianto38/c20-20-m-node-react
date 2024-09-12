@@ -183,7 +183,7 @@ module.exports = [
   {
     name: "Franco",
     last_name: "Huayller",
-    image: "/images/Hombre.jpg",
+    image: "https://c.superprof.com/i/m/22200375/600/20240131050444/22200375.webp",
     birthdate: "21/04/2021",
     description:
       "Soy el mejor desarrollador Backend, apasionado por la arquitectura de software y el desarrollo de soluciones escalables y eficientes.",

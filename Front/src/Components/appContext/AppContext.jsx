@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { getAllUsers } from "../../services/services";
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const cookies = Cookies.get("token");
-
   const [isLogged, setIsLogged] = useState(false);
 
   const [userData, setUserData] = useState(() => {
@@ -18,6 +17,42 @@ const AppProvider = ({ children }) => {
   const [usersSelectedByProfession, setUsersSelectedByProfession] = useState(
     []
   );
+
+  const [userLogged, setUserLogged] = useState(() => {
+    const savedUserLogged = localStorage.getItem("userLogged");
+    return savedUserLogged ? JSON.parse(savedUserLogged) : null;
+  });
+
+  console.log(userLogged);
+
+  const handleGetAllUsers = async () => {
+    try {
+      const response = await getAllUsers();
+
+      if (response.status === 200) {
+        setUserData(response.data);
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetAllUsers();
+  }, []);
+
+  useEffect(() => {
+    const checkToken = () => {
+      const token = Cookies.get("token");
+      console.log("Token:", token);
+      setIsLogged(!!token); // Ajusta isLogged en base a la existencia del token
+    };
+
+    checkToken();
+  }, [userLogged]);
+
   useEffect(() => {
     if (userData) {
       localStorage.setItem("userData", JSON.stringify(userData));
@@ -25,6 +60,14 @@ const AppProvider = ({ children }) => {
       localStorage.removeItem("userData");
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (userLogged) {
+      localStorage.setItem("userLogged", JSON.stringify(userLogged));
+    } else {
+      localStorage.removeItem("userLogged");
+    }
+  }, [userLogged]);
 
   return (
     <AppContext.Provider
@@ -39,6 +82,8 @@ const AppProvider = ({ children }) => {
         setUsersSelectedByProfession,
         noUserFounded,
         setNoUserFounded,
+        userLogged,
+        setUserLogged,
       }}
     >
       {children}

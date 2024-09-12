@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser, getProfessions, login } from "../../services/services.js";
 import { BloqueInputLabel, Botonera } from "../index.js";
 import "./RegisterScreen.css";
+import { AppContext } from "../../Components/appContext/AppContext.jsx";
 
 const RegisterScreen = () => {
   const [professions, setProfessions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { setUserLogged } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -82,6 +84,7 @@ const RegisterScreen = () => {
 
         if (loginResponse.status === 200) {
           console.log("Login successful:", loginResponse.data);
+          setUserLogged(loginResponse.user);
           navigate("/");
         } else {
           console.error(

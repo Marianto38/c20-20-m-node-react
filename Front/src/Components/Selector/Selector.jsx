@@ -12,7 +12,6 @@ const Selector = () => {
     professionsList
   );
 
-  console.log(allUsersData)
   const scrollLeft = () => {
     if (listRef.current) {
       listRef.current.scrollBy({ left: -200, behavior: "smooth" });

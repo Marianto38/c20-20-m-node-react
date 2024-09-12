@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { BloqueInputLabel, Botonera } from "../index.js";
 import "./LoginScreen.css";
 import { login } from "../../services/services.js";
+import { AppContext } from "../../Components/appContext/AppContext.jsx";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
+  const { setUserLogged, isLogged } = useContext(AppContext);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -30,9 +32,9 @@ const LoginScreen = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await login(values);
-      console.log(response);
 
       if (response.status === 200) {
+        setUserLogged(response.data.user)
         navigate("/");
       } else {
         console.log("Error:", response.statusText);
@@ -43,6 +45,13 @@ const LoginScreen = () => {
       setSubmitting(false);
     }
   };
+  
+  useEffect(() => {
+    if (isLogged) {
+      // Solo navega si userLogged ya está seteado
+      navigate("/");
+    }
+  }, [isLogged, navigate]);
 
   return (
     <div className="login">

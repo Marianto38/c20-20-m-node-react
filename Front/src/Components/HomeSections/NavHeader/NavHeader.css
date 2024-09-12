@@ -53,8 +53,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #007bff; /* Color de fondo para las iniciales */
-    color: #fff; /* Color del texto de las iniciales */
+    background-color: #007bff; 
+    color: #fff;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
@@ -71,7 +71,7 @@
   
   .dropdown-menu {
     position: absolute;
-    top: 50px; /* Ajusta la posición según tu diseño */
+    top: 50px;
     right: 0;
     background: white;
     border: 1px solid #ccc;

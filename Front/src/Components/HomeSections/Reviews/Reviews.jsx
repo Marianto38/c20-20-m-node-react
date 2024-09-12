@@ -13,10 +13,11 @@ function Card({ text, name, color }) {
 
 const Reviews = ({userActive}) => {
 
-  const colors = ["#F65035", "#7FBFA2", "#FFCD54", "#3845AD", "#F9CDCC"]; 
+  const colors = ["rgba(2,0,36,1)", "rgba(0,212,255,1)", "#E3B55B", "rgba(57, 27, 148, 1)", "#444444"]; 
   const breakpointColumnsObj = {
-    default: 6,
-    1100: 6,
+    default: 5,
+    1440: 6,
+    1100: 5,
     700: 3,
     500: 2,
   };

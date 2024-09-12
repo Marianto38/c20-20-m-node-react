@@ -5,15 +5,12 @@
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    /* overflow-x: hidden; */
 }
 
 a{
-    color: #00b46c;
-    ;
-    ;
-
-    &:hover{
-        color: #017748
-
-    }
+    color: rgba(2,0,36,1);
+    &:hover {
+        color: rgba(57, 27, 148, 1);
+      }
 }

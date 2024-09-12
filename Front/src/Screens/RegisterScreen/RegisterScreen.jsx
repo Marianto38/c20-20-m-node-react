@@ -84,7 +84,7 @@ const RegisterScreen = () => {
 
         if (loginResponse.status === 200) {
           console.log("Login successful:", loginResponse.data);
-          setUserLogged(loginResponse.user);
+          setUserLogged(loginResponse?.data?.user);
           navigate("/");
         } else {
           console.error(

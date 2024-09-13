@@ -16,6 +16,7 @@ const SuggestedSearch = ({ filteredProfessions, onSuggestionClick }) => {
         setUsersSelectedByProfession([]);
         setNoUserFounded(true);
         Swal.fire({
+          showCloseButton: true,
           icon: "info",
           title: "No se encontraron usuarios disponibles",
           text: "Para la categoría seleccionada.",
@@ -28,6 +29,7 @@ const SuggestedSearch = ({ filteredProfessions, onSuggestionClick }) => {
       setUsersSelectedByProfession([]);
       setNoUserFounded(true);
       Swal.fire({
+        showCloseButton: true,
         icon: "info",
         title: "No se encontraron usuarios disponibles",
         text: "Para la categoría seleccionada.",

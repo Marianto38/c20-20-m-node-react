@@ -75,6 +75,7 @@ const Selector = () => {
         setUsersSelectedByProfession([]);
         setNoUserFounded(true);
         Swal.fire({
+          showCloseButton: true,
           icon: "info",
           title: "No se encontraron usuarios disponibles",
           text: "Para la categoría seleccionada.",
@@ -87,6 +88,7 @@ const Selector = () => {
       setUsersSelectedByProfession([]);
       setNoUserFounded(true);
       Swal.fire({
+        showCloseButton: true,
         icon: "info",
         title: "No se encontraron usuarios disponibles",
         text: "Para la categoría seleccionada.",

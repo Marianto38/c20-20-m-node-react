@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     background-color: #D9D9D9;
+    
 }
 
 .login form{
@@ -15,11 +16,14 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
+    box-shadow: 0 2px 8px rgba(57, 27, 148, 1);
+    border-radius: 2rem;
+
 
     & h2{
         font-size: 40px;
         text-align: center;
-        color: #025131;
+        color: rgba(2, 0, 36, 1);
         
     }
 }

@@ -210,16 +210,12 @@ const BloqueSuperior = ({ professions, handleChange }) => (
     <div className="par">
       <BloqueInputLabel label={"Nombre"} name="name" component={Field} />
       <ErrorMessage name="name" component="div" className="error" />
-      <BloqueInputLabel label={"Apellido"} name="last_name" component={Field} />
-      <ErrorMessage name="last_name" component="div" className="error" />
-    </div>
-    <div className="par">
       <div className="inputLabel">
         <label>Categoria</label>
         <Field
           as="select"
           name="professionId"
-          className="selector"
+          className="selector1"
           id="professionId"
           onChange={handleChange}
         >
@@ -234,12 +230,38 @@ const BloqueSuperior = ({ professions, handleChange }) => (
         </Field>
         <ErrorMessage name="professionId" component="div" className="error" />
       </div>
+      {/* <BloqueInputLabel label={"Apellido"} name="last_name" component={Field} />
+      <ErrorMessage name="last_name" component="div" className="error" /> */}
+    </div>
+    <div className="par">
+      {/* <div className="inputLabel">
+        <label>Categoria</label>
+        <Field
+          as="select"
+          name="professionId"
+          className="selector1"
+          id="professionId"
+          onChange={handleChange}
+        >
+          <option value="" label="Seleccione una categoría" />
+          {professions
+            ?.sort((a, b) => a.name.localeCompare(b.name))
+            .map((profession, index) => (
+              <option key={index} value={profession.name}>
+                {profession.name}
+              </option>
+            ))}
+        </Field>
+        <ErrorMessage name="professionId" component="div" className="error" />
+      </div> */}
+      <BloqueInputLabel label={"Apellido"} name="last_name" component={Field} />
+      <ErrorMessage name="last_name" component="div" className="error" />
       <div className="inputLabel">
         <label>Sexo</label>
         <Field
           as="select"
           name="sexo"
-          className="selector"
+          className="selector1"
           onChange={handleChange}
         >
           <option value="" label="Seleccione su género" />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -6,12 +6,14 @@ import { BloqueInputLabel, Botonera } from "../index.js";
 import "./LoginScreen.css";
 import { login } from "../../services/services.js";
 import { AppContext } from "../../Components/appContext/AppContext.jsx";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
   const { setUserLogged, isLogged } = useContext(AppContext);
-
-  const validationSchema = Yup.object().shape({
+  const [showPassword, setShowPassword] = useState(false);
+  
+const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Email inválido")
       .min(8, "El email debe tener al menos 8 caracteres")
@@ -75,13 +77,21 @@ const LoginScreen = () => {
                 <ErrorMessage name="email" component="div" className="error" />
               </div>
               <div>
+              <div className="password-container">
                 <label htmlFor="password">Contraseña</label>
                 <Field
-                  type="password"
-                  name="password"
-                  as={BloqueInputLabel}
-                  fontSize={"23px"}
-                />
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    as={BloqueInputLabel}
+                    fontSize={"23px"}
+                  />
+                  <span
+                    className="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
                 <ErrorMessage
                   name="password"
                   component="div"

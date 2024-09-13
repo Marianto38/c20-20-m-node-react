@@ -6,11 +6,14 @@ import { createUser, getProfessions, login } from "../../services/services.js";
 import { BloqueInputLabel, Botonera } from "../index.js";
 import "./RegisterScreen.css";
 import { AppContext } from "../../Components/appContext/AppContext.jsx";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const RegisterScreen = () => {
   const [professions, setProfessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const { setUserLogged } = useContext(AppContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -147,42 +150,46 @@ const RegisterScreen = () => {
                 />
                 <ErrorMessage name="email" component="div" className="error" />
               </div>
-              <div>
-                <BloqueInputLabel
-                  label={"Contraseña"}
+              <div className="password-container">
+                <label>Contraseña</label>
+                <Field
+                  type={showPassword ? "text" : "password"}
                   name="password"
-                  type="password"
-                  component={Field}
+                  as={BloqueInputLabel}
+                  fontSize={"23px"}
                 />
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
                 <ErrorMessage
                   name="password"
                   component="div"
                   className="error"
                 />
               </div>
-              <div>
-                <BloqueInputLabel
-                  label={"Repetir contraseña"}
+              <div className="password-container">
+                <label>Repetir contraseña</label>
+                <Field
+                  type={showRepeatPassword ? "text" : "password"}
                   name="repetir"
-                  type="password"
-                  component={({ field, form }) => (
-                    <input
-                      {...field}
-                      type="password"
-                      onChange={(e) => {
-                        form.setFieldValue("repetir", e.target.value);
-                      }}
-                      value={field.value}
-                    />
-                  )}
+                  as={BloqueInputLabel}
+                  fontSize={"23px"}
                 />
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                >
+                  {showRepeatPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
                 <ErrorMessage
                   name="repetir"
                   component="div"
                   className="error"
                 />
               </div>
-
               <div>
                 <span>{"¿Ya estás registrado? "}</span>
                 <NavLink to={"/login"}>{"Iniciar sesión"}</NavLink>

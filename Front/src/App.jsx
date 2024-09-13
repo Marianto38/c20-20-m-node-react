@@ -1,7 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 
-import {HomeScreen, RegisterScreen, LoginScreen} from "./index.js"
+import {HomeScreen, RegisterScreen, LoginScreen, Profile} from "./index.js"
+
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 			<Route path={'/'} element={<HomeScreen />} />
 			<Route path={'/login'} element={<LoginScreen />} />
 			<Route path={'/sign-up'} element={<RegisterScreen />} />
+			<Route path={'/profile'} element={<Profile />} />
 		</Routes>
 	)
 }

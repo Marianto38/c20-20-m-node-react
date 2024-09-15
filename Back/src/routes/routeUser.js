@@ -14,7 +14,7 @@ const registerMid = require("../middleware/registerMid");
 
 router.get("/", getAllUser);
 router.get("/:id", getIdUsers);
-router.get("/profession", getUSerByProfession);
+router.post("/profession", getUSerByProfession);
 router.post("/", registerMid, postUser);
 router.post("/login", loginUser);
 router.post("/update", updateUser);

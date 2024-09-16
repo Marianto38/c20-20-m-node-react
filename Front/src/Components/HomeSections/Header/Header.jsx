@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import "./Header.css";
 import { professionsList } from "./IconsList";
@@ -31,10 +31,7 @@ const Header = () => {
     setFilteredProfessions(results);
     setShowSuggestions(true);
 
-    // if (results.length === 0) {
-    // }
   };
-
  
 
   const handleKeyDown = (event) => {
@@ -48,10 +45,29 @@ const Header = () => {
     setShowSuggestions(false);
   };
 
+  const searchRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setShowSuggestions(false);
+    }
+  };
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setShowSuggestions(false);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchTerm]);
+
   return (
     <header className="home-header">
       <h2>Donde tu conocimiento es buscado</h2>
-      <div className="search" style={{ position: "relative" }}>
+      <div className="search" style={{ position: "relative" }} ref={searchRef}>
         <input
           type="text"
           placeholder="Busca un conocimiento que desees intercambiar"
@@ -69,7 +85,6 @@ const Header = () => {
           />
         )}
       </div>
-
       <Selector />
     </header>
   );

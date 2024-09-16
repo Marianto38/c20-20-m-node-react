@@ -1,26 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import "./NavHeader.css";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import { AppContext } from "../../appContext/AppContext";
 import Cookies from "js-cookie";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { getUserInitials } from "../../../utils/utils";
 
 const NavHeader = () => {
   const { isLogged, userLogged, setIsLogged } = useContext(AppContext);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  console.log(isLogged);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
-  const getUserInitials = (name, lastName) => {
-    const firstInitial = name ? name.charAt(0).toUpperCase() : "";
-    const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : "";
-    return `${firstInitial}${lastInitial}`;
-  };
+
   const handleLogout = () => {
     Cookies.remove("token");
     localStorage.removeItem("userLogged");
@@ -50,6 +46,10 @@ const NavHeader = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleProfile = () => {
+    navigate('/profile');
+  }
 
   console.log(userLogged);
   return (
@@ -81,6 +81,10 @@ const NavHeader = () => {
                   <button className="logout-button" onClick={handleLogout}>
                     Cerrar sesión
                   </button>
+                  <button className="logout-button" onClick={handleProfile}>
+                  Ver mi perfil
+                  </button>
+    
                 </div>
               )}
             </div>

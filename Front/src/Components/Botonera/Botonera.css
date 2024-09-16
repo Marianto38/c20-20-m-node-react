@@ -24,10 +24,13 @@
   }
 
   .aceptar {
-    background-color: #98e3c5;
+    background-color: rgba(57, 27, 148, 1);
+    color: white;
 
     &:hover {
-      background-color: rgb(123, 225, 184);
+      background-color: rgba(0, 212, 255, 1);
+      color: black;
+
     }
   }
 }

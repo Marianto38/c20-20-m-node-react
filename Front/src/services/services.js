@@ -6,6 +6,8 @@ const URL_POST_USER = "http://localhost:3001/user";
 const URL_LOGIN = "http://localhost:3001/user/login";
 const URL_GET_PROFESIONS = "http://localhost:3001/professions";
 const URL_GET_USERS_BY_PROFESSION = "http://localhost:3001/user/profession";
+const URL_UPDATE_USER = "http://localhost:3001/user/update";
+
 
 export const createUser = async (userData) => {
   try {
@@ -109,5 +111,31 @@ export const getUsersByProfesion = async (profession) => {
   } catch (error) {
     console.error("Error fetching users:", error);
     throw error;
+  }
+};
+
+
+
+export const putUpdateUser = async (userData) => {
+  try {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const response = await axios.post(URL_UPDATE_USER, userData, options);
+
+    if (response.status === 200) {
+      console.log("User updated successfully:", response.data);
+      return response; 
+    } else {
+      console.error("Error updating user:", response.status, response.data);
+      throw new Error("Failed to update user");
+    }
+  } catch (error) {
+    console.error("Error updating user:", error.message);
+    throw error; 
   }
 };

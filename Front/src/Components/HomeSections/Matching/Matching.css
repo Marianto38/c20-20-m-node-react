@@ -61,11 +61,12 @@
 .matchingCard-right {
   transform: rotate(25deg);
   transition: transform 0.3s ease-in-out;
-  z-index: -1;
+  /* z-index: -1; */
   width: 33%;
   display: flex;
   justify-content: start;
   margin-top: 5%;
+  cursor: auto;
 }
 
 .matchingCard-middle {
@@ -80,6 +81,7 @@
   color: white;
   width: 100%;
   padding: 1rem 2rem;
+  cursor: auto;
 }
 
 .matchingCard-name {
@@ -107,6 +109,7 @@
 .matchingCard-buttonsMatching {
   display: flex;
   justify-content: center;
+  cursor: auto;
 }
 
 .matchingCard-container figure img {

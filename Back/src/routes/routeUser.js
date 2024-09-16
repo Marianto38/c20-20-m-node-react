@@ -17,5 +17,5 @@ router.get("/:id", getIdUsers);
 router.post("/profession", getUSerByProfession);
 router.post("/", registerMid, postUser);
 router.post("/login", loginUser);
-router.put("/update", updateUser);
+router.post("/update", updateUser);
 module.exports = router;

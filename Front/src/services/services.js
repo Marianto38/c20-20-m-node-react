@@ -125,7 +125,7 @@ export const putUpdateUser = async (userData) => {
       withCredentials: true,
     };
 
-    const response = await axios.put(URL_UPDATE_USER, userData, options);
+    const response = await axios.post(URL_UPDATE_USER, userData, options);
 
     if (response.status === 200) {
       console.log("User updated successfully:", response.data);

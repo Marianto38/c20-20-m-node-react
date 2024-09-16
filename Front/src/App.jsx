@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { HomeScreen, RegisterScreen, LoginScreen, Profile } from "./index.js";
 import { AppContext } from "./Components/appContext/AppContext.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
+import Comunity from "./Components/Comunity/Comunity.jsx";
 
 
 function App() {
@@ -14,6 +15,7 @@ const { userLogged } = useContext(AppContext);
       <Route path={"/"} element={<HomeScreen />} />
       <Route path={"/login"} element={<LoginScreen />} />
       <Route path={"/sign-up"} element={<RegisterScreen />} />
+	  <Route path={"/comunity"} element={<Comunity />} />
       {userLogged && <Route path={"/profile"} element={<Profile />} />}
 	  <Route path="*" element={<NotFound />} /> 
     </Routes>

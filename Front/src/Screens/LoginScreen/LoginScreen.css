@@ -51,3 +51,22 @@
   color: rgba(2, 0, 36, 1);
   bottom: 8px;
 }
+
+@media (max-width: 768px) {
+  .login {
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+  
+  }
+  .login form {
+    padding: 1rem;
+    width: 350px;
+    & h2 {
+      font-size: 30px;
+      margin-top: 1rem;
+
+    }
+  }
+  
+}

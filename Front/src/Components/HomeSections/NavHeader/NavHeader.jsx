@@ -64,8 +64,11 @@ const NavHeader = () => {
     </div>
 
         <ul className="right">
-          {/* <li className="question">?</li>
-          <li className="comunity">Comunidad</li> */}
+           {/* <li className="question">?</li> */}
+           <NavLink to="/comunity">
+           <li className="comunity">Comunidad</li> 
+
+           </NavLink>
           {isLogged ? (
             <div className="user-info" onClick={toggleDropdown}>
               <span className="greeting">

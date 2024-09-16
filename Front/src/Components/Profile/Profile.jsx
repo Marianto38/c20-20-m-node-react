@@ -61,7 +61,7 @@ const Profile = () => {
         setUserLogged(updateUserResponse.data.searchUpdateUser);
         Swal.fire({
           showCloseButton: true,
-          icon: "info",
+          icon: "success",
           title: "Actualización exitosa",
           text: "",
           showConfirmButton: false,
@@ -71,6 +71,14 @@ const Profile = () => {
       }
     } catch (error) {
       console.error("Error en la actualizacion", error);
+      Swal.fire({
+        showCloseButton: true,
+        icon: "error",
+        title: error.response?.data?.error || "Fallo en la autenticación",
+        text: "",
+        showConfirmButton: false,
+        timer: 5000,
+      });
     }
   };
 

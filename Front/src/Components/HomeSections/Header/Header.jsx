@@ -35,6 +35,8 @@ const Header = () => {
     // }
   };
 
+ 
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearchClick();

@@ -67,7 +67,7 @@ const RegisterScreen = () => {
       last_name: values.last_name,
       image: "",
       birthdate: "",
-      description: `Soy ${values.professionId}`,
+      description: "",
       password: values.password,
       email: values.email,
       tel: "",

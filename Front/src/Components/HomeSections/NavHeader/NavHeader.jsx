@@ -5,7 +5,7 @@ import { NavLink, useNavigate} from "react-router-dom";
 import { AppContext } from "../../appContext/AppContext";
 import Cookies from "js-cookie";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
-import { getUserInitials } from "../../../utils/utils";
+import { capitalizeFirstLetter, getUserInitials } from "../../../utils/utils";
 
 const NavHeader = () => {
   const { isLogged, userLogged, setIsLogged } = useContext(AppContext);
@@ -62,7 +62,7 @@ const NavHeader = () => {
           {isLogged ? (
             <div className="user-info" onClick={toggleDropdown}>
               <span className="greeting">
-                ¡Qué bueno verte {userLogged?.name}!
+                ¡Qué bueno verte {capitalizeFirstLetter(userLogged?.name)}!
               </span>
               {userLogged?.image ? (
                 <img

@@ -102,7 +102,11 @@ export const getUsersByProfesion = async (profession) => {
         profession,
       },
     };
-    const response = await axios.get(URL_GET_USERS_BY_PROFESSION, options);
+    console.log(options.params.profession);
+    const response = await axios.post(
+      `${URL_GET_USERS_BY_PROFESSION}?profession=${options.params.profession}`
+    );
+
     return response;
   } catch (error) {
     console.error("Error fetching users:", error);

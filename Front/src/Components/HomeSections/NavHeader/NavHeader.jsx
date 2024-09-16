@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import "./NavHeader.css";
-import { NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../../appContext/AppContext";
 import Cookies from "js-cookie";
 import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
@@ -48,17 +48,18 @@ const NavHeader = () => {
   }, []);
 
   const handleProfile = () => {
-    navigate('/profile');
-  }
+    navigate("/profile");
+  };
 
   console.log(userLogged);
   return (
     <nav>
       <div className={`home-nav-container ${isScrolled ? "scrolled" : ""}`}>
-        <h1 className="title">SkillTrade</h1>
+        {/* <h1 className="title">SkillTrade</h1> */}
+        <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1726505766/rbjosfflqw22nls4jeqr.png" alt="" width={'150px'} />
         <ul className="right">
-          <li className="question">?</li>
-          <li className="comunity">Comunidad</li>
+          {/* <li className="question">?</li>
+          <li className="comunity">Comunidad</li> */}
           {isLogged ? (
             <div className="user-info" onClick={toggleDropdown}>
               <span className="greeting">
@@ -78,13 +79,12 @@ const NavHeader = () => {
 
               {isDropdownVisible && (
                 <div className="dropdown-menu">
+                  <button className="logout-button" onClick={handleProfile}>
+                    Ver mi perfil
+                  </button>
                   <button className="logout-button" onClick={handleLogout}>
                     Cerrar sesión
                   </button>
-                  <button className="logout-button" onClick={handleProfile}>
-                  Ver mi perfil
-                  </button>
-    
                 </div>
               )}
             </div>

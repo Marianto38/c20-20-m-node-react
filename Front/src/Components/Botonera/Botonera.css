@@ -24,12 +24,16 @@
   }
 
   .aceptar {
-    background-color: rgba(57, 27, 148, 1);
+    background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(57, 27, 148, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
     color: white;
 
     &:hover {
-      background-color: rgba(0, 212, 255, 1);
-      color: black;
+      background: rgba(2, 0, 36, 1);
 
     }
   }

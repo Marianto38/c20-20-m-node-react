@@ -21,3 +21,8 @@ export const getUserInitials = (name, lastName) => {
   const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : "";
   return `${firstInitial}${lastInitial}`;
 };
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return date.toLocaleDateString("es-ES", options); // Cambia el idioma a español
+};

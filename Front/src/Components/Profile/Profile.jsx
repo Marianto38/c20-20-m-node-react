@@ -9,7 +9,7 @@ import { getProfessions, putUpdateUser } from "../../services/services";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Botonera from "../Botonera/Botonera";
-import { capitalizeFirstLetter, getUserInitials } from "../../utils/utils";
+import { capitalizeFirstLetter, formatDate, getUserInitials } from "../../utils/utils";
 
 const Profile = () => {
   const { isLogged, userLogged, setUserLogged } = useContext(AppContext);
@@ -21,15 +21,22 @@ const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   console.log(selectedImage);
 
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     setSelectedImage(imageUrl);
+  //     console.log(selectedImage);
+  //     document.querySelector(".profile-photo").src = imageUrl; // Actualizar la previsualización
+  //   }
+  // };
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
-      console.log(selectedImage);
-      document.querySelector(".profile-photo").src = imageUrl; // Actualizar la previsualización
-    }
-  };
+  const file = event.target.files[0];
+  if (file) {
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedImage(imageUrl);  // Actualiza el estado
+  }
+};
 
   const handleSubmit = async (values) => {
     console.log("first");
@@ -134,40 +141,36 @@ const Profile = () => {
             {capitalizeFirstLetter(userLogged?.name)}{" "}
             {capitalizeFirstLetter(userLogged?.last_name)}
           </h2>
-
-          {userLogged?.image ? (
-            <img
-              src={userLogged?.image || ""}
-              alt="Imagen de perfil"
-              className="profile-photo"
-            />
-          ) : (
-            <div className="profile-initials-name">
-              {getUserInitials(userLogged?.name, userLogged?.last_name)}
-            </div>
-          )}
-
-          {/* <img src={userLogged?.image || ""} alt="Profile" className="profile-photo" /> */}
-
-          {/* Botón que simula el input de archivo */}
-          <button
-            type="button"
-            className=""
-            onClick={() => document.getElementById("fileInput").click()}
-          >
-            Actualizar Foto
-          </button>
-
-          {/* Input de archivo oculto */}
-          <input
-            id="fileInput"
-            type="file"
-            name="image"
-            accept="image/*"
-            style={{ display: "none" }} // Ocultar el input
-            onChange={handleImageChange}
+          {selectedImage || userLogged?.image ? (
+          <img
+            src={selectedImage || userLogged?.image}
+            alt="Imagen de perfil"
+            className="profile-photo"
           />
-        </div>
+        ) : (
+          <div className="profile-initials-name">
+            {getUserInitials(userLogged?.name, userLogged?.last_name)}
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => document.getElementById("fileInput").click()}
+        >
+          Actualizar Foto
+        </button>
+
+        <input
+          id="fileInput"
+          type="file"
+          name="image"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={handleImageChange}
+        />
+              <p className="memberSince"> Miembro desde {formatDate(userLogged.createdAt)}</p>
+      </div>
+
         {/* <p>Miembro desde {user.joinDate}</p> */}
 
         <div className="profile-right">
@@ -203,7 +206,7 @@ const Profile = () => {
                       <Field
                         type="text"
                         name="name"
-                        defaultValue=""
+                        value={values.name}
                         onChange={handleChange}
                       />
                       <ErrorMessage
@@ -216,6 +219,7 @@ const Profile = () => {
                       <Field
                         type="text"
                         name="last_name"
+                        value={values.name}
                         onChange={handleChange}
                       />
                       <ErrorMessage

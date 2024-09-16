@@ -41,6 +41,13 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.profile-left .memberSince {
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 2rem;
+}
 .profile-left h2 {
   margin-bottom: 2rem;
   text-align: center;
@@ -135,9 +142,13 @@
   margin: 5px 0 16px 0;
 }
 
+
+
 @media (max-width: 768px) {
   .profile-container {
     padding: 20px;
+    height: auto;
+    width: 100vw;
   }
 
   .profile-content {
@@ -152,7 +163,21 @@
   }
 
   .profile-right {
+    width: 100%;
     max-width: 100%;
     margin-left: 0;
+    margin: 0;
+    padding: auto;
+    border: none;
+  }
+  .form-profile {
+    padding: .5rem;
+    flex-direction: column;
+  }
+  .columnLeft {
+    width: 100%;
+  }
+  .columnRight {
+    width: 100%;
   }
 }

@@ -6,7 +6,7 @@ const URL_POST_USER = "http://localhost:3001/user";
 const URL_LOGIN = "http://localhost:3001/user/login";
 const URL_GET_PROFESIONS = "http://localhost:3001/professions";
 const URL_GET_USERS_BY_PROFESSION = "http://localhost:3001/user/profession";
-
+const URL_GET_USERS_BY_NAME_DESCRIP_PROF = "http://localhost:3001/user/search";
 export const createUser = async (userData) => {
   try {
     const options = {
@@ -103,6 +103,28 @@ export const getUsersByProfesion = async (profession) => {
     console.log(options.params.profession);
     const response = await axios.post(
       `${URL_GET_USERS_BY_PROFESSION}?profession=${options.params.profession}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
+
+export const getUsersByNameDescripProf = async (profession) => {
+  try {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      params: {
+        profession,
+      },
+    };
+    console.log(options.params.profession);
+    const response = await axios.get(
+      `${URL_GET_USERS_BY_NAME_DESCRIP_PROF}/${options.params.profession}`
     );
 
     return response;

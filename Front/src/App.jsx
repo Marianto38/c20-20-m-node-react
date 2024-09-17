@@ -5,6 +5,7 @@ import { HomeScreen, RegisterScreen, LoginScreen, Profile } from "./index.js";
 import { AppContext } from "./Components/appContext/AppContext.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import Comunity from "./Components/Comunity/Comunity.jsx";
+import MatchResults from "./Screens/MatchResults/MatchResults.jsx";
 
 
 function App() {
@@ -17,6 +18,7 @@ const { userLogged } = useContext(AppContext);
       <Route path={"/sign-up"} element={<RegisterScreen />} />
 	  <Route path={"/comunity"} element={<Comunity />} />
       {userLogged && <Route path={"/profile"} element={<Profile />} />}
+      {userLogged && <Route path={"/match"} element={<MatchResults />} />}
 	  <Route path="*" element={<NotFound />} /> 
     </Routes>
   );

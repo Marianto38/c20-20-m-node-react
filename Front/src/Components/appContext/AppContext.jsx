@@ -23,6 +23,9 @@ const AppProvider = ({ children }) => {
     return savedUserLogged ? JSON.parse(savedUserLogged) : null;
   });
 
+  const [acceptedUsers, setAcceptedUsers] = useState([]);
+  
+
 
   const handleGetAllUsers = async () => {
     try {
@@ -82,6 +85,8 @@ const AppProvider = ({ children }) => {
         setNoUserFounded,
         userLogged,
         setUserLogged,
+        acceptedUsers,
+        setAcceptedUsers
       }}
     >
       {children}

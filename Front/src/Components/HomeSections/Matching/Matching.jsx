@@ -6,14 +6,14 @@ import { capitalizeFirstLetter } from "../../../utils/utils";
 import "./Matching.css";
 import Reviews from "../Reviews/Reviews";
 import { AppContext } from "../../appContext/AppContext";
+import { NavLink } from "react-router-dom";
 
 const Matching = () => {
   const [allUsersData, setAllUsersData] = useState([]);
-  const [acceptedUsers, setAcceptedUsers] = useState([]);
   const [deniedUsers, setDeniedUsers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userActive, setUserActive] = useState(allUsersData[0]);
-  const { isLogged, userLogged } = useContext(AppContext);
+  const { isLogged, userLogged, acceptedUsers, setAcceptedUsers } = useContext(AppContext);
 
   const handleGetAllUsers = async () => {
     try {
@@ -139,7 +139,10 @@ const Matching = () => {
                   </article>
                 </div>
               ) : (
+                <div className="math-link">
                 <p>¡Match completado!</p>
+                <NavLink to='/match' className='matchBtn'>Ver Mi Match</NavLink>
+                </div>
               )}
             </div>
 

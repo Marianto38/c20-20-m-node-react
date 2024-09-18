@@ -26,8 +26,7 @@ const NavHeader = () => {
   };
 
   useEffect(() => {
-    // Este efecto se disparará cuando `userLogged` cambie
-    console.log("Usuario loggeado:", userLogged);
+    // console.log("Usuario loggeado:", userLogged);
   }, [userLogged]);
 
   useEffect(() => {

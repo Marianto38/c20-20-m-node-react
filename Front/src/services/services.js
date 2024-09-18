@@ -6,8 +6,8 @@ const URL_POST_USER = "http://localhost:3001/user";
 const URL_LOGIN = "http://localhost:3001/user/login";
 const URL_GET_PROFESIONS = "http://localhost:3001/professions";
 const URL_GET_USERS_BY_PROFESSION = "http://localhost:3001/user/profession";
+const URL_GET_USERS_BY_NAME_DESCRIP_PROF = "http://localhost:3001/user/search";
 const URL_UPDATE_USER = "http://localhost:3001/user/update";
-
 
 export const createUser = async (userData) => {
   try {
@@ -114,7 +114,27 @@ export const getUsersByProfesion = async (profession) => {
   }
 };
 
+export const getUsersByNameDescripProf = async (profession) => {
+  try {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      params: {
+        profession,
+      },
+    };
+    console.log(options.params.profession);
+    const response = await axios.get(
+      `${URL_GET_USERS_BY_NAME_DESCRIP_PROF}/${options.params.profession}`
+    );
 
+    return response;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw error;
+  }
+};
 
 export const putUpdateUser = async (userData) => {
   try {
@@ -122,6 +142,7 @@ export const putUpdateUser = async (userData) => {
       headers: {
         "Content-Type": "application/json",
       },
+
       withCredentials: true,
     };
 
@@ -129,13 +150,13 @@ export const putUpdateUser = async (userData) => {
 
     if (response.status === 200) {
       console.log("User updated successfully:", response.data);
-      return response; 
+      return response;
     } else {
       console.error("Error updating user:", response.status, response.data);
       throw new Error("Failed to update user");
     }
   } catch (error) {
     console.error("Error updating user:", error.message);
-    throw error; 
+    throw error;
   }
 };

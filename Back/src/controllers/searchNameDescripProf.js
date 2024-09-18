@@ -2,7 +2,8 @@ const { Users, Professions, Reviews } = require("../db");
 const { Op } = require("sequelize");
 
 module.exports = async (req, res) => {
-  const { profession } = req.query;
+  const { profession } = req.params;
+  console.log("soy la profesion", profession);
 
   try {
     if (!profession) {
@@ -19,12 +20,6 @@ module.exports = async (req, res) => {
 
     // Obtener todos los `professionId` coincidentes
     const professionIds = professionMatches.map((profession) => profession.id);
-
-    // if (!idProfession) {
-    //   return res.status(400).json({
-    //     error: "Ingrese una profesion valida",
-    //   });
-    // }
 
     const usuarios = await Users.findAll({
       where: {

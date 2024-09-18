@@ -124,3 +124,35 @@
   transform: scale(1.05);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+
+.math-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  .matchBtn {
+    padding: 0 2rem;
+    border-radius: 2rem;
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(57, 27, 148, 1) 50%,
+      rgba(0, 212, 255, 1) 100%
+    );
+      color: white;
+  
+      &:hover {
+        background: rgba(2, 0, 36, 1);
+  
+      }
+  }
+}
+@media (max-width: 768px) {
+  .math-link {
+    z-index: 99;
+   font-size: 1.5rem;
+  }
+}

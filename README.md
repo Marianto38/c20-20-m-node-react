@@ -22,6 +22,20 @@ Además de nuestra plataforma, ofrecemos una comunidad accesible a través de ca
 
 ---
 
+## Desarrolladores del proyecto
+
+### Frontend
+- Maria Antonieta Pereira - https://github.com/Marianto38 -
+- Nicolás Santiago Morales Romero -https://github.com/NicolasSMoralesRomero
+
+### Backend
+- Cristofer Crego - https://github.com/cristofer-crego -
+- Franco Huaylle - https://github.com/fhuayller -
+
+### QA
+- Jose Sat - https://www.linkedin.com/in/jose-qa/ -
+- Malinda Perez - https://www.linkedin.com/in/malinda-marlene-p%C3%A9rez-alvarado-62573127/ -
+---
 ## Stack Tecnológico
 
 ### Backend
